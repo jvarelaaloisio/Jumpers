@@ -1,0 +1,19 @@
+{
+    "name": "VarelaAloisio.Jumpers.Characters.Players",
+    "references": [
+        "GUID:b2682453dc87db5409316332b3561b0e",
+        "GUID:ce4ae6fe238879f448b9987d3c1b8c52",
+        "GUID:0767ef8c505d268439b7fdcbb1cde7d8",
+        "GUID:77de105a0942d9641bb4e5108cbed636",
+        "GUID:cb7044b05ad62704db276c928450cdff"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

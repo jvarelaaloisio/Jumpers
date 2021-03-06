@@ -1,0 +1,18 @@
+{
+    "name": "VarelaAloisio.Jumpers.Character",
+    "references": [
+        "GUID:517686a4f2e5ab1459ff52b82fe9655e",
+        "GUID:ce4ae6fe238879f448b9987d3c1b8c52",
+        "GUID:cb7044b05ad62704db276c928450cdff",
+        "GUID:38bd1354777c75d4390736d3d9237d64"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

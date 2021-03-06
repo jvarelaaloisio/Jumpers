@@ -1,0 +1,17 @@
+{
+    "name": "VarelaAloisio.Jumpers.Audio",
+    "references": [
+        "GUID:ce4ae6fe238879f448b9987d3c1b8c52",
+        "GUID:38bd1354777c75d4390736d3d9237d64",
+        "GUID:5560f6773419d2442b86916aa26338f2"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

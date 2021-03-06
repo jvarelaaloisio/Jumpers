@@ -1,0 +1,16 @@
+{
+    "name": "VarelaAloisio.Hackuaciones.Helpers.Characters",
+    "references": [
+        "GUID:5560f6773419d2442b86916aa26338f2",
+        "GUID:a0f9bf3e16897924a8a8b27ed2f691b4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

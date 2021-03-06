@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f5f9dae2638fa848a7fe1d96911438b, type: 3}
+  m_Name: CharacterSettings
+  m_EditorClassIdentifier: 
+  loop: 0
+  outPutMixerGroup: {fileID: 784897554553746607, guid: d345927fccde5da4b825f827564ab2f9,
+    type: 2}
+  priority: 128
+  volume: 0.15
+  pitch: 2
+  panStereo: 0
+  reverbZoneMix: 1
+  spatialBlend: 0
+  rollOffMode: 0
+  minDistance: 0.1
+  maxDistance: 50
+  spread: 0
+  dopplerLevel: 1
+  bypassEffects: 0
+  bypassListenerEffects: 0
+  bypassReverbZones: 0
+  ignoreListenerVolume: 0
+  ignoreListenerPause: 0

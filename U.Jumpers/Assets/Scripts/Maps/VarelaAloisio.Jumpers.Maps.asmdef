@@ -1,0 +1,15 @@
+{
+    "name": "VarelaAloisio.Jumpers.Maps",
+    "references": [
+        "GUID:a0f9bf3e16897924a8a8b27ed2f691b4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

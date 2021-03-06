@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 1d57f28a06a01fb4da42630528a86d7d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - worldButtonManagerSo: {fileID: 11400000, guid: 77ba44a61901362478a1c18839be22f9,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

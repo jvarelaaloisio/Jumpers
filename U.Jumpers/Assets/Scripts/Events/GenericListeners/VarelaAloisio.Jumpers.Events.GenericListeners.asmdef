@@ -1,0 +1,15 @@
+{
+    "name": "VarelaAloisio.Jumpers.Events.GenericListeners",
+    "references": [
+        "GUID:ce4ae6fe238879f448b9987d3c1b8c52"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
