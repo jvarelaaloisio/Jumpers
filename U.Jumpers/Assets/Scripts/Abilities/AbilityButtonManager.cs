@@ -22,14 +22,14 @@ namespace Abilities
 		[SerializeField, Tooltip("Not Null")] private AbilityChannelSo addAbility;
 
 		private int activeButtons = 0;
-		private CountDownTimer resumeButtons;
+		private CountDownTimer _resumeButtons;
 
 		private void Awake()
 		{
 			hideButtons.SubscribeSafely(HideButtons);
 			showButtons.SubscribeSafely(ShowButtons);
 			addAbility.Subscribe(AddAbility);
-			resumeButtons = new CountDownTimer(buttonsTimeOff, ShowButtons);
+			_resumeButtons = new CountDownTimer(buttonsTimeOff, ShowButtons);
 		}
 
 		private void AddAbility(AbilitySo ability)
@@ -41,7 +41,7 @@ namespace Abilities
 			ability.onUse.AddListener(_ =>
 			{
 				HideButtons();
-				resumeButtons.StartTimer();
+				_resumeButtons.StartTimer();
 			});
 		}
 
