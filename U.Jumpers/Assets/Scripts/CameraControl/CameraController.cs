@@ -1,21 +1,21 @@
 ﻿using System;
 using Helpers;
-using Packages.UpdateManagement;
 using UnityEngine;
+using VarelaAloisio.UpdateManagement.Runtime;
 
 namespace CameraControl
 {
 	public class CameraController : ILateUpdateable
 	{
-		private readonly Camera camera;
-		private readonly CameraModel cameraModel;
-		private readonly Func<Transform> form;
-		private readonly Transform target;
-		private readonly Transform cameraPivot;
-		private readonly Quaternion leftRotationBound;
-		private readonly Quaternion rightRotationBound;
-		private float panState;
-		private float zoomState;
+		private readonly Camera _camera;
+		private readonly CameraModel _cameraModel;
+		private readonly Transform _target;
+		private readonly Transform _cameraPivot;
+		private readonly int _sceneIndex;
+		private readonly Quaternion _leftRotationBound;
+		private readonly Quaternion _rightRotationBound;
+		private float _panState;
+		private float _zoomState;
 		public Action onPanBegins;
 		public Action onPanEnds;
 
@@ -24,25 +24,27 @@ namespace CameraControl
 			CameraModel cameraModel,
 			Transform transform,
 			Transform target,
-			Transform cameraPivot)
+			Transform cameraPivot,
+			int sceneIndex)
 		{
-			this.camera = camera;
-			this.cameraModel = cameraModel;
-			this.target = target;
-			this.cameraPivot = cameraPivot;
-			UpdateManager.Subscribe(this);
+			_camera = camera;
+			_cameraModel = cameraModel;
+			_target = target;
+			_cameraPivot = cameraPivot;
+			_sceneIndex = sceneIndex;
+			UpdateManager.Subscribe(this, sceneIndex);
 			cameraPivot.position = target.position;
 			transform.SetParent(cameraPivot);
 			Quaternion startRotation = cameraPivot.rotation;
-			leftRotationBound = startRotation * Quaternion.Euler(Vector3.up * -cameraModel.MaxPanAngle);
-			rightRotationBound = startRotation * Quaternion.Euler(Vector3.up * cameraModel.MaxPanAngle);
-			panState = 0.5f;
-			zoomState = 0;
+			_leftRotationBound = startRotation * Quaternion.Euler(Vector3.up * -cameraModel.MaxPanAngle);
+			_rightRotationBound = startRotation * Quaternion.Euler(Vector3.up * cameraModel.MaxPanAngle);
+			_panState = 0.5f;
+			_zoomState = 0;
 		}
 
 		public void OnLateUpdate()
 		{
-			cameraPivot.position = target.position;
+			_cameraPivot.position = _target.position;
 		}
 
 		public void BeginPan()
@@ -52,14 +54,14 @@ namespace CameraControl
 
 		public void ControlCamera(Vector2 input)
 		{
-			panState = LerpHelper.GetArcSinLerp((input.x * (cameraModel.IsInvertedX ? -1 : 1) + 1) / 2);
-			zoomState = LerpHelper.GetArcSinLerp((input.y * (cameraModel.IsInvertedY ? -1 : 1) + 1) / 2);
-			cameraPivot.rotation = Quaternion.Slerp(
-				leftRotationBound,
-				rightRotationBound,
-				LerpHelper.GetArcSinLerp(panState));
+			_panState = LerpHelper.GetArcSinLerp((input.x * (_cameraModel.IsInvertedX ? -1 : 1) + 1) / 2);
+			_zoomState = LerpHelper.GetArcSinLerp((input.y * (_cameraModel.IsInvertedY ? -1 : 1) + 1) / 2);
+			_cameraPivot.rotation = Quaternion.Slerp(
+				_leftRotationBound,
+				_rightRotationBound,
+				LerpHelper.GetArcSinLerp(_panState));
 
-			camera.fieldOfView = Mathf.Lerp(cameraModel.MinFOV, cameraModel.MaxFOV, zoomState);
+			_camera.fieldOfView = Mathf.Lerp(_cameraModel.MinFOV, _cameraModel.MaxFOV, _zoomState);
 		}
 
 		public void EndPan()

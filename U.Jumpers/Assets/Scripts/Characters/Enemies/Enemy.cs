@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using Characters.Movements;
-using Packages.UpdateManagement;
+using Debugging;
 using UnityEngine;
-using LS;
+using VarelaAloisio.UpdateManagement.Runtime;
 
 namespace Characters.Enemies
 {
@@ -10,15 +10,15 @@ namespace Characters.Enemies
 	{
 		private const string TAKE_DAMAGE_MESSAGE = "TakeDamage";
 		[SerializeField] private DamageModel damageModel;
-		[SerializeField] protected Movement movement;
+		public Movement movement;
 		[SerializeField] private GameObject telegrapher;
-		private CountDownTimer move;
-		private Vector3 nextPosition;
+		private CountDownTimer _move;
+		private Vector3 _nextPosition;
 
 		protected override void Awake()
 		{
 			base.Awake();
-			move = new CountDownTimer(Model.TimeBetweenJumps, Move);
+			_move = new CountDownTimer(Model.TimeBetweenJumps, Move, gameObject.scene.buildIndex);
 			Controller.OnFinishedMoving += PlanNextMovement;
 		}
 
@@ -33,18 +33,18 @@ namespace Characters.Enemies
 			Transform[] pillars = Controller.GetAvailablePillars();
 			if (pillars.Length.Equals(0))
 			{
-				Debug.Log(name + ": can't move!");
+				Printer.Log(name + ": can't move!");
 				return;
 			}
 
-			nextPosition = movement.GetNextPosition(transform, pillars.Select(t => t.position).ToArray());
-			telegrapher.transform.rotation = Quaternion.LookRotation(nextPosition - transform.position);
-			move.StartTimer();
+			_nextPosition = movement.GetNextPosition(transform, pillars.Select(t => t.position).ToArray());
+			telegrapher.transform.rotation = Quaternion.LookRotation(_nextPosition - transform.position);
+			_move.StartTimer();
 		}
 
 		protected virtual void Move()
 		{
-			Controller.MoveCharacter(nextPosition);
+			Controller.MoveCharacter(_nextPosition);
 		}
 
 		private void OnTriggerEnter(Collider other)

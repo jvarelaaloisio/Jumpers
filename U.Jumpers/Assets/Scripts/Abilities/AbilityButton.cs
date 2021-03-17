@@ -1,7 +1,7 @@
 ﻿using Characters.Abilities.Events;
-using Packages.UpdateManagement;
 using UnityEngine;
 using UnityEngine.UI;
+using VarelaAloisio.UpdateManagement.Runtime;
 
 namespace Abilities
 {
@@ -12,6 +12,7 @@ namespace Abilities
 		[SerializeField] private Image icon;
 		[SerializeField] private Button button;
 		[SerializeField] private Image coolDownIcon;
+		public int SceneIndex { get; set; }
 
 		public void SetAbility(AbilitySo newAbility)
 		{
@@ -31,6 +32,7 @@ namespace Abilities
 						button.interactable = true;
 						coolDownIcon.gameObject.SetActive(false);
 					},
+					SceneIndex,
 					true)
 				.StartAction();
 		}

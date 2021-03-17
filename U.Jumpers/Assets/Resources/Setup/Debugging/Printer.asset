@@ -26,3 +26,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  showTimestamp: 0
+  showTimeSinceStart: 0
+  showLogLevel: 1

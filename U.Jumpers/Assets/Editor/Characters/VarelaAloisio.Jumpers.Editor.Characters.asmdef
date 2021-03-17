@@ -1,7 +1,9 @@
 {
-    "name": "VarelaAloisio.Jumpers.Characters.Editor",
+    "name": "VarelaAloisio.Jumpers.Editor.Characters",
     "references": [
-        "VarelaAloisio.Jumpers.Character"
+        "VarelaAloisio.Jumpers.Character",
+        "VarelaAloisio.Jumpers.Characters.Enemies",
+        "VarelaAloisio.Jumpers.Characters.Movements"
     ],
     "includePlatforms": [
         "Editor"

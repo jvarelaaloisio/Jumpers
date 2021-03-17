@@ -1,9 +1,8 @@
-﻿using System;
-using Events.Channels;
+﻿using Events.Channels;
 using Events.UnityEvents;
 using UnityEngine;
 
-namespace Managers
+namespace UI
 {
 	public class UIManager : MonoBehaviour
 	{

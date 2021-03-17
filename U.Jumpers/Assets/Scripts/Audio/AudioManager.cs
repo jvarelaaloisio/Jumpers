@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Audio.Events;
-using Debug;
-using JetBrains.Annotations;
+using Debugging;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,8 +13,8 @@ namespace Audio
 
 		[Header("Setup")]
 		[SerializeField] private int musicSrcQuantity;
-
 		[SerializeField] private int sfxSrcQuantity;
+		[SerializeField] private int sceneIndex;
 
 		[Space, Header("Channels Listened")]
 		[SerializeField] private AudioChannelSo playMusic;
@@ -41,14 +38,14 @@ namespace Audio
 			AudioPlayer newPlayer;
 			for (var i = 0; i < musicSrcQuantity; i++)
 			{
-				newPlayer = InstantiateAudioPlayer(MUSIC_PREFIX, i, musicSourcesParent);
+				newPlayer = InstantiateAudioPlayer(MUSIC_PREFIX, i, sceneIndex, musicSourcesParent);
 
 				musicPlayers[i] = newPlayer;
 			}
 
 			for (var i = 0; i < sfxSrcQuantity; i++)
 			{
-				newPlayer = InstantiateAudioPlayer(SFX_PREFIX, i, sfxSourcesParent);
+				newPlayer = InstantiateAudioPlayer(SFX_PREFIX, i, sceneIndex, sfxSourcesParent);
 				sfxPlayers[i] = newPlayer;
 			}
 
@@ -78,27 +75,19 @@ namespace Audio
 
 		private static bool TryGetFreeAudioPlayer(AudioPlayer[] players, out AudioPlayer player)
 		{
-			player = players.First(aP => aP.isFree);
-			return players.Any(aP => aP.isFree);
+			player = players.FirstOrDefault(aP => aP.IsFree);
+			return players.Any(aP => aP.IsFree);
 		}
 
-		// private static void PlayClip(AudioClip clip, AudioSettingsSO settings, Vector3 position, AudioSource source)
-		// {
-		// 	source.transform.position = position;
-		// 	settings.ApplyTo(source);
-		// 	source.clip = clip;
-		// 	source.gameObject.SetActive(true);
-		// 	source.Play();
-		// }
-
-		private static AudioPlayer InstantiateAudioPlayer(string playerPrefix, int id, Transform parent = null)
+		private static AudioPlayer InstantiateAudioPlayer(string playerPrefix, int id, int sceneIndex,
+			Transform parent = null)
 		{
 			var newGO = new GameObject(playerPrefix + " Player " + id);
 			newGO.gameObject.SetActive(false);
 			newGO.transform.SetParent(parent);
 			var source = newGO.AddComponent<AudioSource>();
 			source.playOnAwake = false;
-			var player = newGO.AddComponent<AudioPlayer>().With(source);
+			var player = newGO.AddComponent<AudioPlayer>().With(source).InScene(sceneIndex);
 			return player;
 		}
 

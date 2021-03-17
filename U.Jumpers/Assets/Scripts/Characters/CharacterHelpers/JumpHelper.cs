@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Linq;
-using Characters;
-using Packages.UpdateManagement;
 using UnityEngine;
+using VarelaAloisio.UpdateManagement.Runtime;
 
 namespace Helpers.CharacterHelpers
 {
@@ -11,19 +10,23 @@ namespace Helpers.CharacterHelpers
 		private const float MINIMUM_TRAVEL_DISTANCE = 1;
 		private const string PILLARS_LAYER = "Pillars";
 
-		public static void Jump(Transform transform, Vector3 destination, float jumpDuration)
+		public static void Jump(Transform transform, Vector3 destination, float jumpDuration, int sceneIndex,
+			Action onFinish = null)
 		{
 			Vector3 origin = transform.position;
-			new ActionOverTime(jumpDuration,
-					(lerp) => transform.position = Vector3.Lerp(origin, destination, LerpHelper.GetSinLerp(lerp)),
-					true)
-				.StartAction();
-		}
-
-		public static void Jump(Transform transform, Vector3 destination, float jumpDuration, Action onFinish)
-		{
-			Jump(transform, destination, jumpDuration);
-			new CountDownTimer(jumpDuration, onFinish).StartTimer();
+			if (onFinish != null)
+				new ActionOverTime(jumpDuration,
+						(lerp) => transform.position = Vector3.Lerp(origin, destination, LerpHelper.GetSinLerp(lerp)),
+						onFinish,
+						sceneIndex,
+						true)
+					.StartAction();
+			else
+				new ActionOverTime(jumpDuration,
+						(lerp) => transform.position = Vector3.Lerp(origin, destination, LerpHelper.GetSinLerp(lerp)),
+						sceneIndex,
+						true)
+					.StartAction();
 		}
 
 		public static Transform[] FilterOwnPillar(in Transform[] pillars, in Vector3 ownPosition)

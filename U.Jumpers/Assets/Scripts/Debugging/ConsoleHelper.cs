@@ -2,7 +2,7 @@
 using Events.UnityEvents;
 using UnityEngine;
 
-namespace Debug
+namespace Debugging
 {
 	public class ConsoleHelper : MonoBehaviour
 	{

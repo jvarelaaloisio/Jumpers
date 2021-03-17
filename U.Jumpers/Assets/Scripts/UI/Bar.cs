@@ -1,8 +1,7 @@
-﻿using System;
-using Helpers;
-using Packages.UpdateManagement;
+﻿using Helpers;
 using UnityEngine;
 using UnityEngine.UI;
+using VarelaAloisio.UpdateManagement.Runtime;
 
 namespace UI
 {
@@ -10,24 +9,26 @@ namespace UI
 	{
 		[SerializeField] private Image bar;
 		[SerializeField] private float fillTime;
-		private ActionOverTime fillBar;
-		private float lastFill;
-		private float objFill;
+		[SerializeField] private int sceneIndex;
+		private ActionOverTime _fillBar;
+		private float _lastFill;
+		private float _objFill;
 
 		private void Awake()
 		{
-			lastFill = bar.fillAmount;
-			fillBar = new ActionOverTime(
+			_lastFill = bar.fillAmount;
+			_fillBar = new ActionOverTime(
 				fillTime,
-				lerp => bar.fillAmount = Mathf.Lerp(lastFill, objFill, LerpHelper.GetSinLerp(lerp)),
-				() => lastFill = bar.fillAmount,
+				lerp => bar.fillAmount = Mathf.Lerp(_lastFill, _objFill, LerpHelper.GetSinLerp(lerp)),
+				() => _lastFill = bar.fillAmount,
+				sceneIndex,
 				true);
 		}
 
 		public void SetFillAmount(float fillAmount)
 		{
-			objFill = fillAmount;
-			fillBar.StartAction();
+			_objFill = fillAmount;
+			_fillBar.StartAction();
 		}
 	}
 }

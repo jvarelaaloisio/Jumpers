@@ -13,22 +13,27 @@ namespace CameraControl
 		[SerializeField] private CameraModel model;
 		[SerializeField] private string targetTag;
 		private Transform _target;
+
 		[Header("Channels Listened")]
-		[SerializeField, Tooltip("Can be Null")] private Vector2ChannelSo panCamera;
-		[SerializeField, Tooltip("Can be Null")] private VoidChannelSo beginPan;
-		[SerializeField, Tooltip("Can be Null")] private VoidChannelSo endPan;
+		[SerializeField, Tooltip("Can be Null")]
+		private Vector2ChannelSo panCamera;
+		[SerializeField, Tooltip("Can be Null")]
+		private VoidChannelSo beginPan;
+		[SerializeField, Tooltip("Can be Null")]
+		private VoidChannelSo endPan;
+
 		[Header("Events Raised")]
 		[SerializeField] private UnityEvent onPanBegins;
 		[SerializeField] private UnityEvent onPanEnds;
 		private Transform _cameraPivot;
 		private CameraController _cameraController;
-		public int myScene;
+
 		private void Start()
 		{
 			_target = GameObject.FindWithTag(targetTag).transform;
 			_cameraPivot = new GameObject("CameraPivot").transform;
-			SceneManager.MoveGameObjectToScene(_cameraPivot.gameObject, SceneManager.GetSceneByBuildIndex(myScene));
-			_cameraController = new CameraController(camera, model, transform, _target, _cameraPivot);
+			SceneManager.MoveGameObjectToScene(_cameraPivot.gameObject, gameObject.scene);
+			_cameraController = new CameraController(camera, model, transform, _target, _cameraPivot, gameObject.scene.buildIndex);
 			_cameraController.onPanBegins += onPanBegins.Invoke;
 			_cameraController.onPanEnds += onPanEnds.Invoke;
 			beginPan.SubscribeSafely(_cameraController.BeginPan);

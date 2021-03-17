@@ -2,7 +2,7 @@
 using Plugins.DebugSystem.GeneralInformation;
 using UnityEngine;
 
-namespace Debug
+namespace Debugging
 {
 	public class DataHelper : MonoBehaviour
 	{

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using DS.DebugConsole;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +8,7 @@ namespace Plugins.DebugSystem.Console
 {
 	public class ConsoleView : MonoBehaviour
 	{
+		private const int CHARACTER_LIMIT = 13000;
 		[SerializeField] private Text consoleBody;
 		[SerializeField] private InputField inputField;
 		[SerializeField] private ConsoleControllerSO consoleController;
@@ -41,6 +43,11 @@ namespace Plugins.DebugSystem.Console
 		public void WriteFeedback(string newFeedBack)
 		{
 			consoleBody.text += "\n" + newFeedBack;
+			if (consoleBody.text.Length >= CHARACTER_LIMIT)
+			{ 
+				var newBody = consoleBody.text.Substring(consoleBody.text.IndexOf('\n') + 1);
+				consoleBody.text = newBody;
+			}
 			inputField.ActivateInputField();
 		}
 	}
