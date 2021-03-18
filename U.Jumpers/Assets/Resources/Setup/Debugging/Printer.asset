@@ -29,3 +29,4 @@ MonoBehaviour:
   showTimestamp: 0
   showTimeSinceStart: 0
   showLogLevel: 1
+  minimumLogLevel: 2000

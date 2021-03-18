@@ -42,8 +42,17 @@ namespace Characters.Movements
 				else
 					direction = (x > 0) ? Direction.Right : Direction.Left;
 				destinationDirection[i] = (possibleDestinations[i], direction);
-				Printer.Log(LogLevel.Info, $"{name} => {transform.name}: possible dir added: {direction}");
 			}
+			
+			var directionsDebug = "can move: ";
+			for (var i = 0; i < destinationDirection.Length; i++)
+			{
+				directionsDebug += destinationDirection[i].Item2.ToString();
+				if (i != destinationDirection.Length - 1)
+					directionsDebug += " => ";
+			}
+
+			Printer.Log(LogLevel.Info, $"{transform.name}: {name}: {directionsDebug}");
 
 			for (int i = 0; i < waypoints.Length; i++)
 			{

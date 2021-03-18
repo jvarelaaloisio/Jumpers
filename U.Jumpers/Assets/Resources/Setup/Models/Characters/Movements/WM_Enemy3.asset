@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f214e9dbd1142368ea6795ef6d06047, type: 3}
-  m_Name: RandomMovement
+  m_Script: {fileID: 11500000, guid: 5e28210b20305f143aab896f18663c1b, type: 3}
+  m_Name: WM_Enemy3
   m_EditorClassIdentifier: 
+  waypoints: 020000000200000002000000030000000300000003000000

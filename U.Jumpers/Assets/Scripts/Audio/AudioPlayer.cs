@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using VarelaAloisio.UpdateManagement.Runtime;
 
 namespace Audio
@@ -7,7 +8,12 @@ namespace Audio
 	{
 		public AudioSource Source { get; set; }
 		public bool IsFree { get; set; }
-		public int SceneIndex { get; set; }
+		private int _sceneIndex;
+
+		private void Awake()
+		{
+			_sceneIndex = gameObject.scene.buildIndex;
+		}
 
 		public void PlayClip(AudioClip clip, AudioSettingsSO settings, Vector3 position)
 		{
@@ -24,7 +30,7 @@ namespace Audio
 					IsFree = true;
 					gameObject.SetActive(false);
 				},
-				SceneIndex).StartTimer();
+				_sceneIndex).StartTimer();
 		}
 	}
 
@@ -34,12 +40,6 @@ namespace Audio
 		{
 			current.Source = source;
 			current.IsFree = isFree;
-			return current;
-		}
-
-		public static AudioPlayer InScene(this AudioPlayer current, int sceneIndex)
-		{
-			current.SceneIndex = sceneIndex;
 			return current;
 		}
 	}

@@ -41,9 +41,12 @@ namespace Debugging
 		[SerializeField] private bool showTimestamp;
 		[SerializeField] private bool showTimeSinceStart;
 		[SerializeField] private bool showLogLevel;
+		[SerializeField] private LogLevel minimumLogLevel = LogLevel.Info;
 
 		public static void Log(LogLevel logLevel, object message)
 		{
+			if ((int) logLevel < (int) Instance.minimumLogLevel)
+				return;
 			var prefix = string.Empty;
 			if (Instance.showTimeSinceStart)
 				prefix += $"[{Math.Round(Time.time, 2)}s] ";

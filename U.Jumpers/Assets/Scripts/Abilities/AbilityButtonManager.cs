@@ -10,7 +10,6 @@ namespace Abilities
 		[Header("Setup")] [SerializeField] private AbilityButton[] buttons;
 
 		[SerializeField] private float buttonsTimeOff;
-		[SerializeField] private int sceneIndex;
 		
 
 		[Space, Header("Channels Listened")]
@@ -24,6 +23,7 @@ namespace Abilities
 
 		private int _activeButtons = 0;
 		private CountDownTimer _resumeButtons;
+		private int _sceneIndex;
 
 		private void Awake()
 		{
@@ -31,7 +31,8 @@ namespace Abilities
 			hideButtons.SubscribeSafely(HideButtons);
 			showButtons.SubscribeSafely(ShowButtons);
 			addAbility.Subscribe(AddAbility);
-			_resumeButtons = new CountDownTimer(buttonsTimeOff, ShowButtons, sceneIndex);
+			_sceneIndex = gameObject.scene.buildIndex;
+			_resumeButtons = new CountDownTimer(buttonsTimeOff, ShowButtons, _sceneIndex);
 		}
 
 		private void AddAbility(AbilitySo ability)
@@ -51,7 +52,7 @@ namespace Abilities
 		{
 			for (int i = 0; i < _activeButtons; i++)
 			{
-				buttons[i].SceneIndex = sceneIndex;
+				buttons[i].SceneIndex = _sceneIndex;
 			}
 		}
 		private void ShowButtons()

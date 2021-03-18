@@ -10,7 +10,7 @@ namespace Environment
 		[SerializeField] private int degrees;
 		[SerializeField] private float maxDistance;
 		[SerializeField] private LayerMask targetMask;
-		[SerializeField] private int sceneIndex;
+		private int _sceneIndex;
 		
 		private readonly List<MaterialChanger> _targets = new List<MaterialChanger>();
 		private ActionWithFrequency _updateMaterials;
@@ -20,7 +20,8 @@ namespace Environment
 		[ContextMenu("Awake (Reset Actions)")]
 		private void Awake()
 		{
-			_updateMaterials = new ActionWithFrequency(UpdateMaterials, frequency, sceneIndex);
+			_sceneIndex = gameObject.scene.buildIndex;
+			_updateMaterials = new ActionWithFrequency(UpdateMaterials, frequency, _sceneIndex);
 			_myTransform = transform;
 		}
 
