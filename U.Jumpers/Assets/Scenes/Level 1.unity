@@ -5920,7 +5920,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -5995,7 +5995,6 @@ MonoBehaviour:
   camera: {fileID: 963194227}
   model: {fileID: 11400000, guid: 106390ca986fa764ca0323ad06fbcb62, type: 2}
   targetTag: Player
-  sceneIndex: 6
   panCamera: {fileID: 11400000, guid: 359967c558833e24392d3aebbf599519, type: 2}
   beginPan: {fileID: 11400000, guid: f3a8f8228ec329f4592f73ac3a454a60, type: 2}
   endPan: {fileID: 11400000, guid: 5d96d6f231b7d2f43809403eedb7697b, type: 2}
@@ -6027,7 +6026,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  myScene: 6
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6123,7 +6121,6 @@ MonoBehaviour:
   targetMask:
     serializedVersion: 2
     m_Bits: 512
-  sceneIndex: 6
   seeThrough: {fileID: 2100000, guid: ec7de031dd6d00f4fa9346ad90ee2b00, type: 2}
 --- !u!1001 &973497530
 PrefabInstance:
@@ -13632,17 +13629,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8036301016361099222, guid: d6af3a881570a8b4f80f8a96f6609a34,
-        type: 3}
-      propertyPath: sceneIndex
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8036301016361099222, guid: d6af3a881570a8b4f80f8a96f6609a34,
-        type: 3}
-      propertyPath: model
-      value: 
-      objectReference: {fileID: 11400000, guid: 80bb95bf0fd7b44489da0e9fe2517673,
-        type: 2}
     - target: {fileID: 8036301016361099223, guid: d6af3a881570a8b4f80f8a96f6609a34,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13697,16 +13683,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8036301016615973615, guid: d6af3a881570a8b4f80f8a96f6609a34,
-        type: 3}
-      propertyPath: onEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8036301016622489497, guid: d6af3a881570a8b4f80f8a96f6609a34,
-        type: 3}
-      propertyPath: onEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6af3a881570a8b4f80f8a96f6609a34, type: 3}
