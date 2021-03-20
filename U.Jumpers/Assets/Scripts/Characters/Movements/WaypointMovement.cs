@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Debugging;
 using UnityEngine;
 
 namespace Characters.Movements
@@ -16,24 +16,26 @@ namespace Characters.Movements
 			Left
 		}
 
-		private int index;
+		private Dictionary<Transform, int> _transformIndex;
 
 		[SerializeField] private Direction[] waypoints;
 
 		private void OnEnable()
 		{
-			index = 0;
+			_transformIndex = new Dictionary<Transform, int>();
 		}
 
-		public override Vector3 GetNextPosition(Transform myTransform, Vector3[] possibleDestinations)
+		public override Vector3 GetNextPosition(Transform transform, Vector3[] possibleDestinations)
 		{
-			(Vector3, Direction)[] destinationDirection = new (Vector3, Direction)[possibleDestinations.Length];
-			Vector3 myPosition = myTransform.position;
+			if (!_transformIndex.ContainsKey(transform))
+				_transformIndex.Add(transform, 0);
+			var destinationDirection = new (Vector3, Direction)[possibleDestinations.Length];
+			var myPosition = transform.position;
 			for (var i = 0; i < possibleDestinations.Length; i++)
 			{
-				Vector3 directionRaw = possibleDestinations[i] - myPosition;
-				float x = directionRaw.x;
-				float z = directionRaw.z;
+				var directionRaw = possibleDestinations[i] - myPosition;
+				var x = directionRaw.x;
+				var z = directionRaw.z;
 				Direction direction;
 				if (Mathf.Abs(z) > Mathf.Abs(x))
 					direction = (z > 0) ? Direction.Up : Direction.Down;
@@ -41,18 +43,31 @@ namespace Characters.Movements
 					direction = (x > 0) ? Direction.Right : Direction.Left;
 				destinationDirection[i] = (possibleDestinations[i], direction);
 			}
+			
+			var directionsDebug = "can move: ";
+			for (var i = 0; i < destinationDirection.Length; i++)
+			{
+				directionsDebug += destinationDirection[i].Item2.ToString();
+				if (i != destinationDirection.Length - 1)
+					directionsDebug += " => ";
+			}
+
+			Printer.Log(LogLevel.Info, $"{transform.name}: {name}: {directionsDebug}");
 
 			for (int i = 0; i < waypoints.Length; i++)
 			{
-				int lastIndex = index;
-				index++;
-				if (index >= waypoints.Length)
-					index = 0;
-				if (destinationDirection.Any(tuple => tuple.Item2 == waypoints[lastIndex]))
-					return destinationDirection.First(tuple => tuple.Item2 == waypoints[lastIndex]).Item1;
+				int lastIndex = _transformIndex[transform];
+				_transformIndex[transform]++;
+				if (_transformIndex[transform] >= waypoints.Length)
+					_transformIndex[transform] = 0;
+				if (destinationDirection.All(tuple => tuple.Item2 != waypoints[lastIndex]))
+					continue;
+				Printer.Log(LogLevel.Info, $"{name} => {transform.name}: next dir: {waypoints[lastIndex]}");
+				return destinationDirection.First(tuple => tuple.Item2 == waypoints[lastIndex]).Item1;
 			}
 
-			return myTransform.position;
+			Printer.Log(LogLevel.Warning, $"{name} => {transform.name}: no dir satisfies the waypoints");
+			return transform.position;
 		}
 	}
 }

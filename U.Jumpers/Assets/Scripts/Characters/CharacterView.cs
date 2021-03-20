@@ -1,13 +1,11 @@
-﻿using System;
-using Audio;
+﻿using Audio;
 using Audio.Events;
-using Debug;
+using Debugging;
 using Events.Channels;
 using Events.UnityEvents;
 using LS;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 namespace Characters
 {
@@ -15,12 +13,10 @@ namespace Characters
 	{
 		[Header("Setup")]
 		[SerializeField] protected CharacterModel model;
-
 		[SerializeField] protected float rotationDuration;
 
 		[Space, Header("Audio")]
 		[SerializeField] private AudioSettingsSO audioSettings;
-
 		[SerializeField] private AudioClip onMoveClip;
 		[SerializeField] private AudioClip onDamageClip;
 		[SerializeField] private AudioClip onDeathClip;
@@ -42,7 +38,7 @@ namespace Characters
 		protected virtual void Awake()
 		{
 			Controller = new CharacterController(Model, transform,
-				() => transform.position, rotationDuration);
+				() => transform.position, rotationDuration, gameObject.scene.buildIndex);
 			Controller.OnCharacterMoves += MoveCharacter;
 			Controller.OnFinishedMoving += onMoveFinished.Invoke;
 			Controller.Damageable.OnDeath += OnDeath;
@@ -50,9 +46,11 @@ namespace Characters
 
 		protected virtual void Start()
 		{
-			Printer.Log($"{name} created with <color=green>{Controller.Damageable.LifePoints}</color> LP");
-			generalInfoChannel.RaiseEventSafely(() =>
-				$"{name} <color=green>{Controller.Damageable.LifePoints}</color> LP");
+			Printer.Log(
+				LogLevel.Log,
+				$"{name} created with <color=green>{Controller.Damageable.LifePoints}</color> LP");
+			generalInfoChannel.RaiseEventSafely(
+				() => $"{name} <color=green>{Controller.Damageable.LifePoints}</color> LP");
 		}
 
 		protected virtual void OnDeath()

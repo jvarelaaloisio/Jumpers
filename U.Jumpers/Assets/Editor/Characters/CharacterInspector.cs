@@ -1,5 +1,4 @@
-﻿using System;
-using Characters;
+﻿using Characters;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,34 +7,37 @@ namespace Editor.Characters
 	[CustomEditor(typeof(CharacterView), true)]
 	public class CharacterInspector : UnityEditor.Editor
 	{
-		private CharacterView view;
-		private CharacterModel model;
-		private UnityEditor.Editor modelEditor;
-		private void OnEnable()
+		protected CharacterView View;
+		protected CharacterModel Model;
+		protected UnityEditor.Editor ModelEditor;
+
+		protected virtual void OnEnable()
 		{
-			view = (CharacterView) target;
-			model = view.Model;
-			modelEditor = CreateEditor(model);
+			View = (CharacterView) target;
+			Model = View.Model;
+			if(!Model)
+				Debug.Log($"{View.name}: no model set");
+			ModelEditor = CreateEditor(Model);
 		}
 
 		public override void OnInspectorGUI()
 		{
 			base.OnInspectorGUI();
 			EditorGUILayout.Space(5);
-			if(!model)
+			if(!Model)
 				return;
 			EditorGUI.DrawRect(GUILayoutUtility.GetRect(1, 3), Color.black);
 			EditorGUILayout.Space(5);
-			modelEditor.DrawHeader();
-			modelEditor.OnInspectorGUI();
+			ModelEditor.DrawHeader();
+			ModelEditor.OnInspectorGUI();
 		}
 
-		private void OnSceneGUI()
+		protected virtual void OnSceneGUI()
 		{
-			if(!model)
+			if(!Model)
 				return;
 			Handles.color = Color.blue;
-			Handles.DrawWireDisc(view.transform.position, Vector3.up, model.MoveDistance);
+			Handles.DrawWireDisc(View.transform.position, Vector3.up, Model.MoveDistance);
 		}
 	}
 }

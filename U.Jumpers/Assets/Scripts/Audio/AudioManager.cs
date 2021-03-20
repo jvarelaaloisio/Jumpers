@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Audio.Events;
-using Debug;
-using JetBrains.Annotations;
+using Debugging;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,32 +21,29 @@ namespace Audio
 
 		[SerializeField] private AudioChannelSo playSfx;
 
-		private AudioPlayer[] musicPlayers;
-		private AudioPlayer[] sfxPlayers;
-
-		public int myScene;
+		private AudioPlayer[] _musicPlayers;
+		private AudioPlayer[] _sfxPlayers;
 
 		private void Awake()
 		{
 			var musicSourcesParent = new GameObject("Music Sources").transform;
 			var sfxSourcesParent = new GameObject("Sfx Sources").transform;
-			SceneManager.MoveGameObjectToScene(musicSourcesParent.gameObject,
-				SceneManager.GetSceneByBuildIndex(myScene));
-			SceneManager.MoveGameObjectToScene(sfxSourcesParent.gameObject, SceneManager.GetSceneByBuildIndex(myScene));
-			musicPlayers = new AudioPlayer[musicSrcQuantity];
-			sfxPlayers = new AudioPlayer[sfxSrcQuantity];
+			SceneManager.MoveGameObjectToScene(musicSourcesParent.gameObject, gameObject.scene);
+			SceneManager.MoveGameObjectToScene(sfxSourcesParent.gameObject, gameObject.scene);
+			_musicPlayers = new AudioPlayer[musicSrcQuantity];
+			_sfxPlayers = new AudioPlayer[sfxSrcQuantity];
 			AudioPlayer newPlayer;
 			for (var i = 0; i < musicSrcQuantity; i++)
 			{
 				newPlayer = InstantiateAudioPlayer(MUSIC_PREFIX, i, musicSourcesParent);
 
-				musicPlayers[i] = newPlayer;
+				_musicPlayers[i] = newPlayer;
 			}
 
 			for (var i = 0; i < sfxSrcQuantity; i++)
 			{
 				newPlayer = InstantiateAudioPlayer(SFX_PREFIX, i, sfxSourcesParent);
-				sfxPlayers[i] = newPlayer;
+				_sfxPlayers[i] = newPlayer;
 			}
 
 			playMusic.Subscribe(PlayMusic);
@@ -58,40 +52,32 @@ namespace Audio
 
 		private void PlayMusic(AudioClip clip, AudioSettingsSO settings, Vector3 position)
 		{
-			if (!clip || !TryGetFreeAudioPlayer(musicPlayers, out var player))
+			if (!clip || !TryGetFreeAudioPlayer(_musicPlayers, out var player))
 			{
-				Printer.Log("No music players are available");
+				Printer.Log(LogLevel.Error, "No music players are available");
 				return;
 			}
 
 			player.PlayClip(clip, settings, position);
-			Printer.Log($"{name.Colored("yellow")}: Music: {clip.name.Bold()} playing in {player.name.Bold()}");
+			Printer.Log(LogLevel.Info, $"{name.Colored("yellow")}: Music: {clip.name.Bold()} playing in {player.name.Bold()}");
 		}
 
 		private void PlaySfx(AudioClip clip, AudioSettingsSO settings, Vector3 position)
 		{
-			if (!clip || !TryGetFreeAudioPlayer(sfxPlayers, out var player))
+			if (!clip || !TryGetFreeAudioPlayer(_sfxPlayers, out var player))
 				return;
 			player.PlayClip(clip, settings, position);
-			Printer.Log($"{name.Colored("yellow")}: sfx: {clip.name.Bold()} playing in {player.name.Bold()}");
+			Printer.Log(LogLevel.Info, $"{name.Colored("yellow")}: sfx: {clip.name.Bold()} playing in {player.name.Bold()}");
 		}
 
 		private static bool TryGetFreeAudioPlayer(AudioPlayer[] players, out AudioPlayer player)
 		{
-			player = players.First(aP => aP.isFree);
-			return players.Any(aP => aP.isFree);
+			player = players.FirstOrDefault(aP => aP.IsFree);
+			return players.Any(aP => aP.IsFree);
 		}
 
-		// private static void PlayClip(AudioClip clip, AudioSettingsSO settings, Vector3 position, AudioSource source)
-		// {
-		// 	source.transform.position = position;
-		// 	settings.ApplyTo(source);
-		// 	source.clip = clip;
-		// 	source.gameObject.SetActive(true);
-		// 	source.Play();
-		// }
-
-		private static AudioPlayer InstantiateAudioPlayer(string playerPrefix, int id, Transform parent = null)
+		private static AudioPlayer InstantiateAudioPlayer(string playerPrefix, int id,
+			Transform parent = null)
 		{
 			var newGO = new GameObject(playerPrefix + " Player " + id);
 			newGO.gameObject.SetActive(false);

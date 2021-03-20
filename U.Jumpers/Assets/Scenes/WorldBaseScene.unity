@@ -228,6 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bar: {fileID: 116230187}
   fillTime: 0.5
+  sceneIndex: 0
 --- !u!1 &209843015
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,6 +726,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7695136816353931038, guid: d36705e2cfa7b764e930bf4ad80b4eb7,
+        type: 3}
+      propertyPath: sceneIndex
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d36705e2cfa7b764e930bf4ad80b4eb7, type: 3}
 --- !u!1 &699275404
@@ -887,6 +893,7 @@ MonoBehaviour:
   - {fileID: 1005441928}
   - {fileID: 2033481823}
   buttonsTimeOff: 1
+  sceneIndex: 0
   showButtons: {fileID: 11400000, guid: daf42bae3fd142a48bd7ae576feb5044, type: 2}
   hideButtons: {fileID: 11400000, guid: 58a0900afdd22a64eaad76959768b4f7, type: 2}
   addAbility: {fileID: 11400000, guid: 2b61a1a070ed47d40b44a79c2bbf64a9, type: 2}
@@ -921,6 +928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSrcQuantity: 10
   sfxSrcQuantity: 10
+  sceneIndex: 5
   playMusic: {fileID: 11400000, guid: 4e58228ff898163469172f7435ae7ef5, type: 2}
   playSfx: {fileID: 11400000, guid: 620413bf6524e9c4699b3cbcc67b1f60, type: 2}
   myScene: 5

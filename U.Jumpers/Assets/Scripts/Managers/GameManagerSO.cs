@@ -1,8 +1,6 @@
-﻿using Packages.UpdateManagement;
-using UnityEngine;
-using UnityEngine.Rendering;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
+using VarelaAloisio.UpdateManagement.Runtime;
 
 namespace Managers
 {
@@ -38,6 +36,7 @@ namespace Managers
 		{
 			if(!SceneManager.GetSceneByBuildIndex(id).isLoaded)
 				return;
+			UpdateManager.FlushScene(id);
 			SceneManager.UnloadSceneAsync(id);
 		}
 		public void LoadLevel(int id)

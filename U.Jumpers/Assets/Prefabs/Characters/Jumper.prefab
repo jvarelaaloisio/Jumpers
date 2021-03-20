@@ -117,7 +117,7 @@ MonoBehaviour:
   rotationDuration: 0.25
   audioSettings: {fileID: 11400000, guid: 144b80357c647624f814f006fa35633d, type: 2}
   onMoveClip: {fileID: 8300000, guid: f3e85a1f960801d4abc04b4dda30b435, type: 3}
-  onDamageClip: {fileID: 0}
+  onDamageClip: {fileID: 8300000, guid: 90f4420e670215841acc51ab09639dc8, type: 3}
   onDeathClip: {fileID: 0}
   onMove:
     m_PersistentCalls:
@@ -203,7 +203,18 @@ MonoBehaviour:
       m_Calls: []
   onAudio:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 620413bf6524e9c4699b3cbcc67b1f60, type: 2}
+        m_MethodName: RaiseEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   generalInfoChannel: {fileID: 11400000, guid: a0aabcb17202a5541b61f0ef124e78db, type: 2}
   damageModel: {fileID: 11400000, guid: d1e9ac08cd814ce42addfb835e9ce78d, type: 2}
   movement: {fileID: 11400000, guid: 7ae900637a77759409e0531f7ef69a1e, type: 2}

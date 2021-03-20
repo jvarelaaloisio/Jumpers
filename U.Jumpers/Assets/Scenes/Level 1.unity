@@ -1020,7 +1020,7 @@ Transform:
   - {fileID: 687318381}
   - {fileID: 327058065}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &154804230
 PrefabInstance:
@@ -1583,7 +1583,7 @@ PrefabInstance:
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
@@ -1636,10 +1636,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 3a9080819cc63c5489e03b9cceafbf72,
         type: 2}
+    - target: {fileID: 3881003665000264422, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: sceneIndex
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_Name
       value: Jumper (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 808c37602dfbcdf4e92ea82d4362740b, type: 3}
@@ -1764,7 +1774,7 @@ Transform:
   - {fileID: 365351196}
   - {fileID: 1420469104}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &313606886
 PrefabInstance:
@@ -2036,7 +2046,7 @@ PrefabInstance:
     - target: {fileID: 1771294953537851699, guid: b2e721e3787874040be0dfc14a2e439d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 1771294953537851699, guid: b2e721e3787874040be0dfc14a2e439d,
         type: 3}
@@ -2430,7 +2440,7 @@ PrefabInstance:
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
@@ -2483,10 +2493,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 905094f2fe6bed04d82ebb3ae7e59e48,
         type: 2}
+    - target: {fileID: 3881003665000264422, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: sceneIndex
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_Name
       value: Jumper (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 808c37602dfbcdf4e92ea82d4362740b, type: 3}
@@ -4084,7 +4104,7 @@ PrefabInstance:
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
@@ -4137,10 +4157,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 905094f2fe6bed04d82ebb3ae7e59e48,
         type: 2}
+    - target: {fileID: 3881003665000264422, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: sceneIndex
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_Name
       value: Jumper (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 808c37602dfbcdf4e92ea82d4362740b, type: 3}
@@ -4438,7 +4468,7 @@ PrefabInstance:
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
@@ -4491,10 +4521,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 905094f2fe6bed04d82ebb3ae7e59e48,
         type: 2}
+    - target: {fileID: 3881003665000264422, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: sceneIndex
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_Name
       value: Jumper (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 808c37602dfbcdf4e92ea82d4362740b, type: 3}
@@ -5634,7 +5674,7 @@ Transform:
   - {fileID: 573423347}
   - {fileID: 154804231}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &919980542 stripped
 Transform:
@@ -5687,7 +5727,7 @@ PrefabInstance:
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
@@ -5740,10 +5780,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 905094f2fe6bed04d82ebb3ae7e59e48,
         type: 2}
+    - target: {fileID: 3881003665000264422, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: sceneIndex
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_Name
       value: Jumper (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 808c37602dfbcdf4e92ea82d4362740b, type: 3}
@@ -5839,7 +5889,7 @@ Transform:
   - {fileID: 919980542}
   - {fileID: 145531643}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
@@ -5870,7 +5920,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -5976,7 +6026,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  myScene: 6
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6184,7 +6233,7 @@ Transform:
   - {fileID: 1500024775}
   - {fileID: 1881672180}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1003632240 stripped
 Transform:
@@ -6842,7 +6891,7 @@ PrefabInstance:
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
@@ -6895,10 +6944,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 905094f2fe6bed04d82ebb3ae7e59e48,
         type: 2}
+    - target: {fileID: 3881003665000264422, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: sceneIndex
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_Name
       value: Jumper (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 808c37602dfbcdf4e92ea82d4362740b, type: 3}
@@ -7260,7 +7319,7 @@ PrefabInstance:
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
@@ -7295,7 +7354,7 @@ PrefabInstance:
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
@@ -7342,10 +7401,20 @@ PrefabInstance:
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3881003665000264422, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: sceneIndex
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_Name
       value: Jumper (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 808c37602dfbcdf4e92ea82d4362740b, type: 3}
@@ -7370,7 +7439,7 @@ PrefabInstance:
     - target: {fileID: 1771294953537851699, guid: b2e721e3787874040be0dfc14a2e439d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 1771294953537851699, guid: b2e721e3787874040be0dfc14a2e439d,
         type: 3}
@@ -8220,7 +8289,7 @@ PrefabInstance:
     - target: {fileID: 1771294953537851699, guid: b2e721e3787874040be0dfc14a2e439d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 1771294953537851699, guid: b2e721e3787874040be0dfc14a2e439d,
         type: 3}
@@ -8768,7 +8837,7 @@ PrefabInstance:
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
@@ -8821,10 +8890,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 905094f2fe6bed04d82ebb3ae7e59e48,
         type: 2}
+    - target: {fileID: 3881003665000264422, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: sceneIndex
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_Name
       value: Jumper (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 808c37602dfbcdf4e92ea82d4362740b, type: 3}
@@ -10582,7 +10661,7 @@ PrefabInstance:
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
@@ -10635,10 +10714,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 905094f2fe6bed04d82ebb3ae7e59e48,
         type: 2}
+    - target: {fileID: 3881003665000264422, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: sceneIndex
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_Name
       value: Jumper (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 808c37602dfbcdf4e92ea82d4362740b, type: 3}
@@ -11392,7 +11481,7 @@ PrefabInstance:
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264420, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
@@ -11439,10 +11528,20 @@ PrefabInstance:
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3881003665000264422, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: sceneIndex
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_Name
       value: Jumper (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 808c37602dfbcdf4e92ea82d4362740b, type: 3}
@@ -11618,7 +11717,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 6
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -11629,7 +11728,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -13025,7 +13124,7 @@ PrefabInstance:
     - target: {fileID: 1771294953537851699, guid: b2e721e3787874040be0dfc14a2e439d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 1771294953537851699, guid: b2e721e3787874040be0dfc14a2e439d,
         type: 3}
@@ -13415,6 +13514,11 @@ PrefabInstance:
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3881003665000264422, guid: 808c37602dfbcdf4e92ea82d4362740b,
+        type: 3}
+      propertyPath: sceneIndex
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3881003665000264423, guid: 808c37602dfbcdf4e92ea82d4362740b,
         type: 3}
       propertyPath: m_Name
@@ -13579,16 +13683,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8036301016615973615, guid: d6af3a881570a8b4f80f8a96f6609a34,
-        type: 3}
-      propertyPath: onEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8036301016622489497, guid: d6af3a881570a8b4f80f8a96f6609a34,
-        type: 3}
-      propertyPath: onEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6af3a881570a8b4f80f8a96f6609a34, type: 3}

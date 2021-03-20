@@ -20,7 +20,7 @@ MonoBehaviour:
   pitch: 2
   panStereo: 0
   reverbZoneMix: 1
-  spatialBlend: 0
+  spatialBlend: 1
   rollOffMode: 0
   minDistance: 0.1
   maxDistance: 50

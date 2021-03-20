@@ -24,24 +24,22 @@ namespace Managers
 		[SerializeField] private VoidChannelSo hidePillarButtons;
 		[SerializeField] private GameObjectChannelSo selectPillarButton;
 
-		private GameObject pillarButtonsParent;
-		private GameObject[] pillarButtonGos;
-		private PillarButton[] pillarButtons;
-		private int activePillars;
-
-		public int myScene;
+		private GameObject _pillarButtonsParent;
+		private GameObject[] _pillarButtonGos;
+		private PillarButton[] _pillarButtons;
+		private int _activePillars;
 
 		private void Awake()
 		{
-			pillarButtonsParent = new GameObject("Pillar Buttons");
-			SceneManager.MoveGameObjectToScene(pillarButtonsParent, SceneManager.GetSceneByBuildIndex(myScene));
-			pillarButtonsParent.transform.SetParent(canvas.transform);
-			pillarButtons = new PillarButton[pillarButtonQty];
-			pillarButtonGos = new GameObject[pillarButtonQty];
+			_pillarButtonsParent = new GameObject("Pillar Buttons");
+			SceneManager.MoveGameObjectToScene(_pillarButtonsParent, gameObject.scene);
+			_pillarButtonsParent.transform.SetParent(canvas.transform);
+			_pillarButtons = new PillarButton[pillarButtonQty];
+			_pillarButtonGos = new GameObject[pillarButtonQty];
 			for (int i = 0; i < pillarButtonQty; i++)
 			{
-				pillarButtonGos[i] = Instantiate(pillarButtonPrefab, pillarButtonsParent.transform);
-				pillarButtons[i] = pillarButtonGos[i].GetComponent<PillarButton>();
+				_pillarButtonGos[i] = Instantiate(pillarButtonPrefab, _pillarButtonsParent.transform);
+				_pillarButtons[i] = _pillarButtonGos[i].GetComponent<PillarButton>();
 			}
 
 			selectPillarButton.Subscribe(go => PillarButtonPress(go.GetComponent<PillarButton>()));
@@ -54,26 +52,26 @@ namespace Managers
 		private void SetUpPillarButtons(Transform[] pillars)
 		{
 			Camera mainCamera = Camera.main;
-			activePillars = Mathf.Clamp(pillars.Length, 0, pillarButtonQty);
-			for (var i = 0; i < activePillars; i++)
+			_activePillars = Mathf.Clamp(pillars.Length, 0, pillarButtonQty);
+			for (var i = 0; i < _activePillars; i++)
 			{
-				pillarButtons[i].PillarTransform = pillars[i];
-				pillarButtonGos[i].GetComponent<RectTransform>().position =
+				_pillarButtons[i].PillarTransform = pillars[i];
+				_pillarButtonGos[i].GetComponent<RectTransform>().position =
 					mainCamera.WorldToScreenPoint(pillars[i].position) + pillarButtonsOffset;
 			}
 		}
 
 		private void HidePillarButtons()
 		{
-			foreach (var go in pillarButtonGos) go.SetActive(false);
+			foreach (var go in _pillarButtonGos) go.SetActive(false);
 		}
 
 		private void ShowPillarButtons()
 		{
 			for (var i = 0; i < pillarButtonQty; i++)
 			{
-				bool setActive = i < activePillars;
-				pillarButtonGos[i].SetActive(setActive);
+				bool setActive = i < _activePillars;
+				_pillarButtonGos[i].SetActive(setActive);
 			}
 		}
 

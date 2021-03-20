@@ -1,6 +1,8 @@
 {
     "name": "VarelaAloisio.Jumpers.Characters.Movements",
-    "references": [],
+    "references": [
+        "GUID:38bd1354777c75d4390736d3d9237d64"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

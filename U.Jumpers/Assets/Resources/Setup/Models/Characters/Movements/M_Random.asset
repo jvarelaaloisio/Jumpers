@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e28210b20305f143aab896f18663c1b, type: 3}
-  m_Name: SquareMovement
+  m_Script: {fileID: 11500000, guid: 1f214e9dbd1142368ea6795ef6d06047, type: 3}
+  m_Name: M_Random
   m_EditorClassIdentifier: 
-  waypoints: 00000000020000000100000003000000
