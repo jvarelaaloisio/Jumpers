@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Characters.Enemies
+namespace Characters
 {
 	[CreateAssetMenu(menuName = "Models/Damage", fileName = "DamageModel")]
 	public class DamageModel : ScriptableObject

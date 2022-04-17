@@ -1,0 +1,17 @@
+{
+    "name": "VarelaAloisio.Jumpers.Editor.Maps",
+    "references": [
+        "GUID:b251ac0a930312748a960845f59e3a7c"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

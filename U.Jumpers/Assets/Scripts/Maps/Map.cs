@@ -1,20 +1,26 @@
 ﻿using System;
+using Core;
 
 namespace Maps
 {
 	[Serializable]
 	public struct Map
 	{
-		public int[] Layout { get; set; }
+		public int[,,] Layout;
 
-		public Map(int[] layout)
+		public Map(int[,,] layout)
 		{
-			Layout = layout;
+			this.Layout = layout;
 		}
 
-		public Map(int size)
+		public Map(int width, int height, int depth)
 		{
-			Layout = new int[size];
+			Layout = new int[width, height, depth];
+		}
+
+		public Map(Int3 size)
+		{
+			Layout = new int[size.x, size.y, size.z];
 		}
 	}
 }

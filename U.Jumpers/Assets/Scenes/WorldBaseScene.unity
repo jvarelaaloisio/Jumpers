@@ -8,8 +8,9 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 4af4514a93b4bd34195fc782512a0649
+  m_OcclusionCullingData: {fileID: 36300000, guid: 99c9b86e4f6479c45b248d186be25646,
+    type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -874,7 +875,6 @@ MonoBehaviour:
   showPillarButtons: {fileID: 11400000, guid: daf42bae3fd142a48bd7ae576feb5044, type: 2}
   hidePillarButtons: {fileID: 11400000, guid: 58a0900afdd22a64eaad76959768b4f7, type: 2}
   selectPillarButton: {fileID: 11400000, guid: 758ff55aa86e59c479769d47397c8add, type: 2}
-  myScene: 5
 --- !u!114 &857542463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -893,7 +893,6 @@ MonoBehaviour:
   - {fileID: 1005441928}
   - {fileID: 2033481823}
   buttonsTimeOff: 1
-  sceneIndex: 0
   showButtons: {fileID: 11400000, guid: daf42bae3fd142a48bd7ae576feb5044, type: 2}
   hideButtons: {fileID: 11400000, guid: 58a0900afdd22a64eaad76959768b4f7, type: 2}
   addAbility: {fileID: 11400000, guid: 2b61a1a070ed47d40b44a79c2bbf64a9, type: 2}
@@ -926,12 +925,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37267c93bfb432943ab30d00ceb872be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSrcQuantity: 10
-  sfxSrcQuantity: 10
-  sceneIndex: 5
+  musicSrcQuantity: 2
+  isMusicPoolDynamic: 0
+  sfxSrcQuantity: 20
+  isSfxPoolDynamic: 0
   playMusic: {fileID: 11400000, guid: 4e58228ff898163469172f7435ae7ef5, type: 2}
   playSfx: {fileID: 11400000, guid: 620413bf6524e9c4699b3cbcc67b1f60, type: 2}
-  myScene: 5
 --- !u!4 &954318534
 Transform:
   m_ObjectHideFlags: 0

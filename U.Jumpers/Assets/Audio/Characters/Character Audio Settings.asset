@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f5f9dae2638fa848a7fe1d96911438b, type: 3}
-  m_Name: CharacterSettings
+  m_Name: Character Audio Settings
   m_EditorClassIdentifier: 
   loop: 0
   outPutMixerGroup: {fileID: 784897554553746607, guid: d345927fccde5da4b825f827564ab2f9,
     type: 2}
   priority: 128
-  volume: 0.15
-  pitch: 2
+  volume: 1
+  pitch: 1.5
   panStereo: 0
   reverbZoneMix: 1
   spatialBlend: 1
   rollOffMode: 0
-  minDistance: 0.1
-  maxDistance: 50
+  minDistance: 0.3
+  maxDistance: 20
   spread: 0
-  dopplerLevel: 1
+  dopplerLevel: 0.11
   bypassEffects: 0
   bypassListenerEffects: 0
   bypassReverbZones: 0

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Audio.Events;
+﻿using Audio.Events;
 using Debugging;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,21 +7,23 @@ namespace Audio
 {
 	public class AudioManager : MonoBehaviour
 	{
-		private const string MUSIC_PREFIX = "Music";
-		private const string SFX_PREFIX = "Sfx";
+		private const string MusicPrefIx = "Music";
+		private const string SfxPrefix = "Sfx";
 
 		[Header("Setup")]
 		[SerializeField] private int musicSrcQuantity;
 
+		[SerializeField] private bool isMusicPoolDynamic;
 		[SerializeField] private int sfxSrcQuantity;
+		[SerializeField] private bool isSfxPoolDynamic;
 
 		[Space, Header("Channels Listened")]
 		[SerializeField] private AudioChannelSo playMusic;
 
 		[SerializeField] private AudioChannelSo playSfx;
 
-		private AudioPlayer[] _musicPlayers;
-		private AudioPlayer[] _sfxPlayers;
+		private AudioPlayer.Factory _musicPlayerFactory;
+		private AudioPlayer.Factory _sfxPlayerFactory;
 
 		private void Awake()
 		{
@@ -30,63 +31,44 @@ namespace Audio
 			var sfxSourcesParent = new GameObject("Sfx Sources").transform;
 			SceneManager.MoveGameObjectToScene(musicSourcesParent.gameObject, gameObject.scene);
 			SceneManager.MoveGameObjectToScene(sfxSourcesParent.gameObject, gameObject.scene);
-			_musicPlayers = new AudioPlayer[musicSrcQuantity];
-			_sfxPlayers = new AudioPlayer[sfxSrcQuantity];
-			AudioPlayer newPlayer;
-			for (var i = 0; i < musicSrcQuantity; i++)
-			{
-				newPlayer = InstantiateAudioPlayer(MUSIC_PREFIX, i, musicSourcesParent);
-
-				_musicPlayers[i] = newPlayer;
-			}
-
-			for (var i = 0; i < sfxSrcQuantity; i++)
-			{
-				newPlayer = InstantiateAudioPlayer(SFX_PREFIX, i, sfxSourcesParent);
-				_sfxPlayers[i] = newPlayer;
-			}
-
+			_musicPlayerFactory = new AudioPlayer.Factory(MusicPrefIx, musicSourcesParent);
+			_musicPlayerFactory.InitializePool(musicSrcQuantity, isMusicPoolDynamic);
+			_sfxPlayerFactory = new AudioPlayer.Factory(SfxPrefix, sfxSourcesParent);
+			_sfxPlayerFactory.InitializePool(sfxSrcQuantity, isSfxPoolDynamic);
+			
 			playMusic.Subscribe(PlayMusic);
 			playSfx.Subscribe(PlaySfx);
 		}
 
-		private void PlayMusic(AudioClip clip, AudioSettingsSO settings, Vector3 position)
+		private static void PlayAudio(AudioClip clip,
+			AudioSettingsSO settings,
+			Vector3 position,
+			AudioPlayer.Factory audioPlayerFactory,
+			string logPrefix)
 		{
-			if (!clip || !TryGetFreeAudioPlayer(_musicPlayers, out var player))
+			if (!clip)
 			{
-				Printer.Log(LogLevel.Error, "No music players are available");
+				Printer.Log(LogLevel.Warning, $"{logPrefix}you're trying to play a null audio");
+				return;
+			}
+			
+			var player = audioPlayerFactory.Get();
+			if (!player)
+			{
+				Printer.Log(LogLevel.Warning, $"{logPrefix}cannot play {clip.name.Bold()}");
 				return;
 			}
 
 			player.PlayClip(clip, settings, position);
-			Printer.Log(LogLevel.Info, $"{name.Colored("yellow")}: Music: {clip.name.Bold()} playing in {player.name.Bold()}");
+			Printer.Log(LogLevel.Info,
+				$"{logPrefix}{clip.name.Bold()} playing in {player.name.Bold()}");
 		}
+
+		private void PlayMusic(AudioClip clip, AudioSettingsSO settings, Vector3 position)
+			=> PlayAudio(clip, settings, position, _musicPlayerFactory, $"{name.Colored("orange")}: Music: ");
 
 		private void PlaySfx(AudioClip clip, AudioSettingsSO settings, Vector3 position)
-		{
-			if (!clip || !TryGetFreeAudioPlayer(_sfxPlayers, out var player))
-				return;
-			player.PlayClip(clip, settings, position);
-			Printer.Log(LogLevel.Info, $"{name.Colored("yellow")}: sfx: {clip.name.Bold()} playing in {player.name.Bold()}");
-		}
-
-		private static bool TryGetFreeAudioPlayer(AudioPlayer[] players, out AudioPlayer player)
-		{
-			player = players.FirstOrDefault(aP => aP.IsFree);
-			return players.Any(aP => aP.IsFree);
-		}
-
-		private static AudioPlayer InstantiateAudioPlayer(string playerPrefix, int id,
-			Transform parent = null)
-		{
-			var newGO = new GameObject(playerPrefix + " Player " + id);
-			newGO.gameObject.SetActive(false);
-			newGO.transform.SetParent(parent);
-			var source = newGO.AddComponent<AudioSource>();
-			source.playOnAwake = false;
-			var player = newGO.AddComponent<AudioPlayer>().With(source);
-			return player;
-		}
+			=> PlayAudio(clip, settings, position, _sfxPlayerFactory, $"{name.Colored("yellow")}: sfx: ");
 
 		private void OnDestroy()
 		{

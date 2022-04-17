@@ -15,7 +15,7 @@ namespace Characters.Players
 		[SerializeField, Tooltip("Not Null")] private AbilityChannelSo useAbility;
 
 		[Space, Header("Events Raised")] public TransformArrayUnityEvent onCanMove;
-		private Vector3 lastCheckPoint;
+		private Vector3 _lastCheckPoint;
 		protected override void Awake()
 		{
 			base.Awake();
@@ -47,7 +47,7 @@ namespace Characters.Players
 		protected override void OnDeath()
 		{
 			base.OnDeath();
-			transform.position = lastCheckPoint;
+			transform.position = _lastCheckPoint;
 			Controller.Damageable.TakeDamage(-model.LifePoints);
 		}
 
@@ -55,7 +55,7 @@ namespace Characters.Players
 		{
 			var temp = checkPoint.position;
 			temp.y = transform.position.y;
-			lastCheckPoint = temp;
+			_lastCheckPoint = temp;
 		}
 
 		private void OnDestroy()

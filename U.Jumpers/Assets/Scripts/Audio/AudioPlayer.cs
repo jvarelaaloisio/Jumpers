@@ -1,4 +1,6 @@
 ﻿using System;
+using Core.Factory;
+using Debugging;
 using UnityEngine;
 using VarelaAloisio.UpdateManagement.Runtime;
 
@@ -7,7 +9,7 @@ namespace Audio
 	public class AudioPlayer : MonoBehaviour
 	{
 		public AudioSource Source { get; set; }
-		public bool IsFree { get; set; }
+		public Action<AudioPlayer> OnAudioFinished;
 		private int _sceneIndex;
 
 		private void Awake()
@@ -17,29 +19,53 @@ namespace Audio
 
 		public void PlayClip(AudioClip clip, AudioSettingsSO settings, Vector3 position)
 		{
-			gameObject.SetActive(true);
 			transform.position = position;
 			settings.ApplyTo(Source);
 			Source.clip = clip;
 			Source.Play();
-			IsFree = false;
 			if (settings.Loop)
 				return;
-			new CountDownTimer(clip.length, () =>
-				{
-					IsFree = true;
-					gameObject.SetActive(false);
-				},
-				_sceneIndex).StartTimer();
+			new CountDownTimer(clip.length, () => OnAudioFinished(this), _sceneIndex).StartTimer();
+		}
+		
+		public class Factory : UnityFactory<AudioPlayer>
+		{
+			public Factory(
+				string namePrefix,
+				Transform parent = null)
+				: base(namePrefix,
+						" Player ",
+						parent)
+			{ }
+
+			protected override AudioPlayer InstantiateObject()
+			{
+				int id = GetNextID();
+				Printer.Log(LogLevel.Log, "instantiated id: " + id);
+				var newGO = new GameObject(GetName(id));
+				newGO.gameObject.SetActive(false);
+				newGO.transform.SetParent(Parent);
+				var source = newGO.AddComponent<AudioSource>();
+				source.playOnAwake = false;
+				var player = newGO.AddComponent<AudioPlayer>();
+				player.Source = source;
+				player.OnAudioFinished = Dispose;
+				return player;
+			}
+
+			protected override void EnableObject(AudioPlayer player)
+				=> player.gameObject.SetActive(true);
+
+			protected override void DisposeObject(AudioPlayer player)
+				=> player.gameObject.SetActive(false);
 		}
 	}
 
 	public static class AudioPlayerHelper
 	{
-		public static AudioPlayer With(this AudioPlayer current, AudioSource source, bool isFree = true)
+		public static AudioPlayer With(this AudioPlayer current, AudioSource source)
 		{
 			current.Source = source;
-			current.IsFree = isFree;
 			return current;
 		}
 	}

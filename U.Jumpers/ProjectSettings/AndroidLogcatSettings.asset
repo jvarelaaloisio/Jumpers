@@ -3,8 +3,8 @@
     "m_SelectedPackage": {
         "deviceId": "ZY227RHVH2",
         "name": "com.VarelaAloisio.Jumpers",
-        "processId": 16593,
-        "exited": true
+        "processId": 27827,
+        "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
@@ -85,6 +85,12 @@
             "name": "com.VarelaAloisio.Jumpers",
             "processId": 16593,
             "exited": true
+        },
+        {
+            "deviceId": "ZY227RHVH2",
+            "name": "com.VarelaAloisio.Jumpers",
+            "processId": 27827,
+            "exited": false
         }
     ],
     "m_Tags": {

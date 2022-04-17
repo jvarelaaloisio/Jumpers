@@ -9,7 +9,7 @@ namespace Debugging
 	{
 		#region Singleton
 
-		private const string PRINTER_PATH = "Setup/Debugging/Printer";
+		private const string PrinterPath = "Setup/Debugging/Printer";
 		private static Printer _instance;
 
 		private static Printer Instance
@@ -18,24 +18,24 @@ namespace Debugging
 			{
 				if (!_instance)
 				{
-					_instance = Resources.Load<Printer>(PRINTER_PATH);
+					_instance = Resources.Load<Printer>(PrinterPath);
 				}
-
+		
 				if (_instance)
 					return _instance;
 				Debug.Log("No Printer found");
 				_instance = CreateInstance<Printer>();
-
+		
 				return _instance;
 			}
 		}
 
 		#endregion
 
-		private const string INFO_COLOR = "grey";
-		private const string LOG_COLOR = "grey";
-		private const string WARNING_COLOR = "yellow";
-		private const string ERROR_COLOR = "red";
+		private const string InfoColor = "grey";
+		private const string LOGColor = "grey";
+		private const string WarningColor = "yellow";
+		private const string ErrorColor = "red";
 
 		[SerializeField] private StringUnityEvent onPrint;
 		[SerializeField] private bool showTimestamp;
@@ -58,16 +58,16 @@ namespace Debugging
 				switch (logLevel)
 				{
 					case LogLevel.Info:
-						color = INFO_COLOR;
+						color = InfoColor;
 						break;
 					case LogLevel.Log:
-						color = LOG_COLOR;
+						color = LOGColor;
 						break;
 					case LogLevel.Warning:
-						color = WARNING_COLOR;
+						color = WarningColor;
 						break;
 					case LogLevel.Error:
-						color = ERROR_COLOR;
+						color = ErrorColor;
 						break;
 				}
 				prefix += $"{logLevel.Colored(color)}: ";
