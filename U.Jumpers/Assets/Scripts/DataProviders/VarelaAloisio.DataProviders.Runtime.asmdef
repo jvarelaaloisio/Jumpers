@@ -1,0 +1,17 @@
+{
+    "name": "VarelaAloisio.DataProviders.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:a0f9bf3e16897924a8a8b27ed2f691b4",
+        "GUID:0767ef8c505d268439b7fdcbb1cde7d8"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

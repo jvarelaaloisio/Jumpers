@@ -8,7 +8,7 @@ namespace Editor.Characters
 	public class CharacterInspector : UnityEditor.Editor
 	{
 		protected CharacterView View;
-		protected CharacterModel Model;
+		protected PawnModel Model;
 		protected UnityEditor.Editor ModelEditor;
 
 		protected virtual void OnEnable()

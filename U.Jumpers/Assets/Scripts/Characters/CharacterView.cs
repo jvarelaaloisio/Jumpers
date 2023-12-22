@@ -15,7 +15,7 @@ namespace Characters
 	{
 		[Header("Setup")]
 		[SerializeField]
-		protected CharacterModel model;
+		protected PawnModel model;
 
 		[SerializeField]
 		protected float rotationDuration;
@@ -54,27 +54,27 @@ namespace Characters
 		[Tooltip("Can Be Null")]
 		private FuncStringChannel generalInfoChannel;
 
-		protected CharacterController Controller;
-		public CharacterModel Model => model;
+		public Pawn Pawn { get; set; }
+		public PawnModel Model => model;
 
 		protected virtual void Awake()
 		{
-			Controller = new CharacterController(Model, transform,
+			Pawn = new Pawn(Model, transform,
 												() => transform.position, rotationDuration,
 												gameObject.scene.buildIndex);
-			Controller.OnCharacterMoves += MoveCharacter;
-			Controller.OnFinishedMoving += onMoveFinished.Invoke;
-			Controller.Damageable.OnDeath += OnDeath;
+			Pawn.OnCharacterMoves += MoveCharacter;
+			Pawn.OnFinishedMoving += onMoveFinished.Invoke;
+			Pawn.Damageable.OnDeath += OnDeath;
 		}
 
 		protected virtual void Start()
 		{
 			Printer.Log(
 						LogLevel.Log,
-						$"{name} created with <color=green>{Controller.Damageable.LifePoints}</color> LP");
+						$"{name} created with <color=green>{Pawn.Damageable.LifePoints}</color> LP");
 			generalInfoChannel.RaiseEventSafely(
 												() =>
-													$"{name} <color=green>{Controller.Damageable.LifePoints}</color> LP");
+													$"{name} <color=green>{Pawn.Damageable.LifePoints}</color> LP");
 		}
 
 		protected virtual void OnDeath()
@@ -92,7 +92,7 @@ namespace Characters
 
 		public void TakeDamage(int damage)
 		{
-			Damageable damageable = Controller.Damageable;
+			Damageable damageable = Pawn.Damageable;
 			damageable.TakeDamage(damage);
 			onTakeDamage.Invoke(damage);
 			onLifeChanged.Invoke(onLifeChangedIsLerp
@@ -100,7 +100,7 @@ namespace Characters
 									: damageable.LifePoints);
 			onAudio.Invoke(onDamageClip, audioSettings, transform.position);
 			Printer.Log(
-						$"{name} took <color=red>{damage}</color> damage and now has <color=green>{Controller.Damageable.LifePoints}/{Controller.Damageable.MaxLifePoints}</color>");
+						$"{name} took <color=red>{damage}</color> damage and now has <color=green>{Pawn.Damageable.LifePoints}/{Pawn.Damageable.MaxLifePoints}</color>");
 		}
 	}
 }

@@ -1,6 +1,6 @@
 ﻿namespace Characters
 {
-	public interface ICharacterModel
+	public interface IPawnModel
 	{
 		float MoveDistance { get; }
 		float JumpDuration { get; }

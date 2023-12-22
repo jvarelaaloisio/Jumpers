@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using CharacterController = Characters.CharacterController;
+﻿using Characters;
+using UnityEngine;
 
 namespace Abilities
 {
@@ -10,12 +10,12 @@ namespace Abilities
 		[SerializeField] private int damage;
 		[SerializeField] private LayerMask enemyMask;
 
-		public override bool CanBeUsed(CharacterController controller)
+		public override bool CanBeUsed(Pawn controller)
 		{
 			return true;
 		}
 
-		public override void Use(CharacterController controller)
+		public override void Use(Pawn controller)
 		{
 			Collider[] enemies = Physics.OverlapSphere(
 				controller.GetTransform.position,

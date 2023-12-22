@@ -7,7 +7,7 @@ namespace Characters.Enemies
 	{
 		[Header("Setup")]
 		[SerializeField]
-		private CharacterModel model;
+		private PawnModel model;
 
 		[SerializeField]
 		private Movement movement;

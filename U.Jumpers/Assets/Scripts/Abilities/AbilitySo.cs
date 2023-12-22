@@ -1,6 +1,6 @@
-﻿using Events.UnityEvents;
+﻿using Characters;
+using Events.UnityEvents;
 using UnityEngine;
-using CharacterController = Characters.CharacterController;
 
 namespace Abilities
 {
@@ -18,9 +18,9 @@ namespace Abilities
 
 		public float CoolDown => coolDown;
 
-		public abstract bool CanBeUsed(CharacterController controller);
+		public abstract bool CanBeUsed(Pawn controller);
 
-		public virtual void Use(CharacterController controller)
+		public virtual void Use(Pawn controller)
 		{
 			onUse.Invoke(id);
 		}

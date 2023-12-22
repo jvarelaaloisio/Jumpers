@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Characters.Movements;
 using Core.Factory;
 using Debugging;
@@ -23,11 +24,10 @@ namespace Characters.Enemies
 		private CountDownTimer _move;
 		private Vector3 _nextPosition;
 
-		protected override void Awake()
+		private void OnEnable()
 		{
-			base.Awake();
 			_move = new CountDownTimer(Model.TimeBetweenJumps, Move, gameObject.scene.buildIndex);
-			Controller.OnFinishedMoving += PlanNextMovement;
+			Pawn.OnFinishedMoving += PlanNextMovement;
 		}
 
 		protected override void Start()
@@ -39,11 +39,12 @@ namespace Characters.Enemies
 		private void OnDisable()
 		{
 			_move.StopTimer();
+			Pawn.OnFinishedMoving -= PlanNextMovement;
 		}
 
 		protected virtual void PlanNextMovement()
 		{
-			Transform[] pillars = Controller.GetAvailablePillars();
+			Transform[] pillars = Pawn.GetAvailablePillars();
 			if (pillars.Length.Equals(0))
 			{
 				Printer.Log(name + ": can't move!");
@@ -57,7 +58,7 @@ namespace Characters.Enemies
 
 		protected virtual void Move()
 		{
-			Controller.MoveCharacter(_nextPosition);
+			Pawn.MoveCharacter(_nextPosition);
 		}
 
 		private void OnTriggerEnter(Collider other)
@@ -72,7 +73,7 @@ namespace Characters.Enemies
 			public Builder(Enemy enemy)
 				=> _enemy = enemy;
 
-			public Builder SetModel(CharacterModel model)
+			public Builder SetModel(PawnModel model)
 			{
 				_enemy.model = model;
 				return this;
