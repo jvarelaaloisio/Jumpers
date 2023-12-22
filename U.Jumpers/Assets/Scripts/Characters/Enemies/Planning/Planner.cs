@@ -11,6 +11,7 @@ namespace Characters.Enemies.Planning
     {
         [SerializeField] private GoapActionContainer[] actions;
         [SerializeField] private WorldStateReader[] worldStateReaders;
+        [SerializeField] private CharacterView characterView;
         [SerializeField] private Goap goap;
         private Coroutine _planningCor;
 
@@ -65,7 +66,7 @@ namespace Characters.Enemies.Planning
                                                         goal,
                                                         state => DoesSatisfy(state),
                                                         state => GetHeuristic(state),
-                                                        actions.Select(action => action.GetAction())));
+                                                        actions.Select(action => action.GetAction(characterView.Pawn))));
         }
 
         private float GetHeuristic(GoapState state)

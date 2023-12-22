@@ -24,7 +24,7 @@ namespace AI.GOAP.States.Conditions
             }
 
             var typedWorldState = (T)currentValue;
-            return IsConditionMet_Internal(typedState.Value, typedWorldState);
+            return IsConditionMet_Internal(typedState.value, typedWorldState);
         }
 
         protected virtual bool IsConditionMet_Internal(T myValue, T worldValue)

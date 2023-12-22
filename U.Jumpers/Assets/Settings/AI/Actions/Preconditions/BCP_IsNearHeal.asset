@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f49699d96aee4ef8b2a76b7b143b6bde, type: 3}
-  m_Name: Reader_NearestEnemyTag
+  m_Script: {fileID: 11500000, guid: 6ea46abd551e434e837743c43708b13a, type: 3}
+  m_Name: BCP_IsNearHeal
   m_EditorClassIdentifier: 
-  id: nearestEnemyTag
-  charactersProvider: {fileID: 11400000, guid: cfe50eaaf424fa245b0cf2e546d126ae, type: 2}
+  conditionState:
+    id: isNearHeal
+    Value: 1

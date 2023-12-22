@@ -1,3 +1,19 @@
-﻿fileFormatVersion: 2
+fileFormatVersion: 2
 guid: be54edb485604569a99f3d6836a1ec6f
-timeCreated: 1614455572
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - model: {instanceID: 0}
+  - charactersProvider: {fileID: 11400000, guid: cfe50eaaf424fa245b0cf2e546d126ae,
+      type: 2}
+  - audioSettings: {instanceID: 0}
+  - onMoveClip: {instanceID: 0}
+  - onDamageClip: {instanceID: 0}
+  - onDeathClip: {instanceID: 0}
+  - generalInfoChannel: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

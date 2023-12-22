@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using Audio;
 using Audio.Events;
 using Characters.Events;
+using Core.Providers;
 using Debugging;
 using Events.Channels;
 using Events.UnityEvents;
@@ -16,6 +18,8 @@ namespace Characters
 		[Header("Setup")]
 		[SerializeField]
 		protected PawnModel model;
+
+		[SerializeField] private DataProvider<List<CharacterView>> charactersProvider;
 
 		[SerializeField]
 		protected float rotationDuration;
@@ -75,6 +79,16 @@ namespace Characters
 			generalInfoChannel.RaiseEventSafely(
 												() =>
 													$"{name} <color=green>{Pawn.Damageable.LifePoints}</color> LP");
+		}
+
+		private void OnEnable()
+		{
+			charactersProvider.Value.Add(this);
+		}
+
+		private void OnDisable()
+		{
+			charactersProvider.Value.Remove(this);
 		}
 
 		protected virtual void OnDeath()

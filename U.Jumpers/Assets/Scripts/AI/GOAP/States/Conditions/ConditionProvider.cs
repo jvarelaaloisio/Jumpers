@@ -16,7 +16,7 @@ namespace AI.GOAP.States.Conditions
         public virtual bool IsConditionMet(Dictionary<string, object> worldState)
         {
             if (worldState.TryGetValue(GetConditionState().id, out var sateValue))
-                return sateValue == GetConditionState().Value;
+                return sateValue == GetConditionState().value;
             return false;
         }
     }

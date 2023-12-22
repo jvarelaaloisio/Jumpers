@@ -1,6 +1,8 @@
 {
     "name": "VarelaAloisio.Jumpers.Character",
+    "rootNamespace": "",
     "references": [
+        "GUID:a0f9bf3e16897924a8a8b27ed2f691b4",
         "GUID:517686a4f2e5ab1459ff52b82fe9655e",
         "GUID:ce4ae6fe238879f448b9987d3c1b8c52",
         "GUID:cb7044b05ad62704db276c928450cdff",
