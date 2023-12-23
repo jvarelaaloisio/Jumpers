@@ -24,10 +24,15 @@ namespace Characters.Enemies
 		private CountDownTimer _move;
 		private Vector3 _nextPosition;
 
-		private void OnEnable()
+		protected override void Awake()
 		{
+			base.Awake();
 			_move = new CountDownTimer(Model.TimeBetweenJumps, Move, gameObject.scene.buildIndex);
-			Pawn.OnFinishedMoving += PlanNextMovement;
+		}
+
+		protected virtual void OnEnable()
+		{
+			pawn.OnFinishedMoving += PlanNextMovement;
 		}
 
 		protected override void Start()
@@ -36,29 +41,22 @@ namespace Characters.Enemies
 			PlanNextMovement();
 		}
 
-		private void OnDisable()
+		protected virtual void OnDisable()
 		{
-			_move.StopTimer();
-			Pawn.OnFinishedMoving -= PlanNextMovement;
+			_move?.StopTimer();
+			pawn.OnFinishedMoving -= PlanNextMovement;
 		}
 
 		protected virtual void PlanNextMovement()
 		{
-			Transform[] pillars = Pawn.GetAvailablePillars();
-			if (pillars.Length.Equals(0))
-			{
-				Printer.Log(name + ": can't move!");
-				return;
-			}
-
-			_nextPosition = movement.GetNextPosition(transform, pillars.Select(t => t.position).ToArray());
+			_nextPosition = movement.GetNextPositionAsync(pawn).Result;
 			telegrapher.transform.rotation = Quaternion.LookRotation(_nextPosition - transform.position);
-			_move.StartTimer();
+			_move?.StartTimer();
 		}
 
 		protected virtual void Move()
 		{
-			Pawn.MoveCharacter(_nextPosition);
+			pawn.MoveCharacter(_nextPosition);
 		}
 
 		private void OnTriggerEnter(Collider other)

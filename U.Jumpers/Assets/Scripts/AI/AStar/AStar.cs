@@ -8,7 +8,7 @@ namespace AI.AStar
     /// Pathfinding algorithm
     /// </summary>
     /// <typeparam name="TNode">the type of node to use</typeparam>
-    public class AStar<TNode> where TNode : class
+    public class AStar<TNode>
     {
         /// <summary>
         /// Runs Pathfinding algorithm.
@@ -42,7 +42,7 @@ namespace AI.AStar
             initialPath.OpenNodes.Add(origin);
             initialPath.GCostByNode[origin] = 0;
             initialPath.FCostByNode[origin] = getHeuristic(origin, destination);
-            initialPath.PreviousNodeTo[origin] = null;
+            initialPath.PreviousNodeTo[origin] = default;
             initialPath.Current = origin;
 
             var path = initialPath;
@@ -50,9 +50,12 @@ namespace AI.AStar
             {
                 for (int i = 0; i < maxIterationsPerCycle; i++)
                 {
+                    if (!path.HasOpenNodes)
+                        break;
                     path = path.Clone();
 
                     var candidate = GetCandidateWithLeastFCost(path);
+                    
                     path.Current = candidate;
 
                     if (doesSatisfy(candidate))
@@ -90,16 +93,18 @@ namespace AI.AStar
                 }
 
                 var tempPath = path;
-                yield return new PathResult(new Lazy<IEnumerable<TNode>>(() => tempPath.GetSteps()),
+                yield return new PathResult(destination,
+                                            new Lazy<IEnumerable<TNode>>(() => tempPath.GetSteps()),
                                             path.IsComplete);
             }
 
-            yield return new PathResult(new Lazy<IEnumerable<TNode>>(() => path.GetSteps()),
+            yield return new PathResult(destination,
+                                        new Lazy<IEnumerable<TNode>>(() => path.GetSteps()),
                                         path.IsComplete);
             yield break;
 
             static TNode GetCandidateWithLeastFCost(Path path)
-                => path.OpenNodes.OrderBy(x => path.FCostByNode[x]).First();
+                => path.OpenNodes.OrderBy(x => path.FCostByNode[x]).FirstOrDefault();
             
             static bool DoesntHave(IEnumerable<Arc> collection)
                 => collection == null || !collection.Any();
@@ -260,6 +265,10 @@ namespace AI.AStar
         public readonly struct PathResult
         {
             /// <summary>
+            /// The goal destination
+            /// </summary>
+            public readonly TNode destination;
+            /// <summary>
             /// Lazy collection of the steps to follow
             /// </summary>
             public Lazy<IEnumerable<TNode>> Steps { get; }
@@ -268,10 +277,11 @@ namespace AI.AStar
             /// </summary>
             public bool IsValid { get; }
 
-            public PathResult(Lazy<IEnumerable<TNode>> steps, bool isValid)
+            public PathResult(TNode destination, Lazy<IEnumerable<TNode>> steps, bool isValid)
             {
                 Steps = steps;
                 IsValid = isValid;
+                this.destination = destination;
             }
         }
     }

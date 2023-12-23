@@ -10,5 +10,7 @@ namespace Core.States
         public string id;
         [SerializeField]
         public object value;
+
+        public virtual object GetValue() => value;
     }
 }

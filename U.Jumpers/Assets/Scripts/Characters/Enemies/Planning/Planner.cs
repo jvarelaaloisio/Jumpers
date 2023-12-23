@@ -1,16 +1,20 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using AI.GOAP;
+using AI.GOAP.States.Conditions;
 using UnityEngine;
 
 namespace Characters.Enemies.Planning
 {
+    [Obsolete]
     [RequireComponent(typeof(Goap))]
     public class Planner : MonoBehaviour
     {
-        [SerializeField] private GoapActionContainer[] actions;
-        [SerializeField] private WorldStateReader[] worldStateReaders;
+        [field: SerializeField] public GoapAction[] Actions { get; set; }
+        [field: SerializeField] public ConditionProvider[] GoalConditions { get; set; }
+        [field: SerializeField] public WorldStateReader[] WorldStateReaders { get; set; }
         [SerializeField] private CharacterView characterView;
         [SerializeField] private Goap goap;
         private Coroutine _planningCor;
@@ -36,10 +40,14 @@ namespace Characters.Enemies.Planning
             //get actions
             //get goal world state
             var goal = new GoapState();
-            ExecuteGoap(currentState, goal);
+            StartPlanningGoap(currentState, goal, goap.TryPlan(currentState,
+                                                               goal,
+                                                               state => DoesSatisfy(state),
+                                                               state => GetHeuristic(state),
+                                                               Actions,
+                                                               null));
             //if plan != null
             //yield return pawn.doAction(plan.NextAction)
-            
         }
 
         private void OnDisable()
@@ -53,20 +61,16 @@ namespace Characters.Enemies.Planning
             throw new NotImplementedException();
         }
 
-        private void HandlePlan(IEnumerable<GoapAction> obj)
+        private void HandlePlan(IEnumerable<IGoapAction> obj)
         {
             throw new NotImplementedException();
         }
 
-        private void ExecuteGoap(GoapState currentState, GoapState goal)
+        public void StartPlanningGoap(GoapState currentState, GoapState goal, IEnumerator tryPlan)
         {
             if (_planningCor != null)
                 StopCoroutine(_planningCor);
-            _planningCor = StartCoroutine(goap.TryPlan(currentState,
-                                                        goal,
-                                                        state => DoesSatisfy(state),
-                                                        state => GetHeuristic(state),
-                                                        actions.Select(action => action.GetAction(characterView.Pawn))));
+            _planningCor = StartCoroutine(tryPlan);
         }
 
         private float GetHeuristic(GoapState state)

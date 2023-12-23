@@ -113,6 +113,10 @@ namespace MirzaBeig
             // End functions.
             // =================================
 
+            public void ScaleWorldSpeed(float speed)
+            {
+                worldRotationSpeed *= speed;
+            }
         }
 
         // =================================	

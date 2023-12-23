@@ -5,5 +5,6 @@
 		float MoveDistance { get; }
 		float JumpDuration { get; }
 		int LifePoints { get; }
+		int StartingLifePoints { get; }
 	}
 }

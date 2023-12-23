@@ -174,19 +174,7 @@ MonoBehaviour:
         m_CallState: 2
   onMoveFinished:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3971692240563092820}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Stop
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onTakeDamage:
     m_PersistentCalls:
       m_Calls:
@@ -2267,7 +2255,12 @@ PrefabInstance:
     - target: {fileID: 198810709796914224, guid: c3ef8cb5c23f37b439f55fc218032488,
         type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198810709796914224, guid: c3ef8cb5c23f37b439f55fc218032488,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 198810709796914224, guid: c3ef8cb5c23f37b439f55fc218032488,
         type: 3}
@@ -2292,6 +2285,11 @@ PrefabInstance:
     - target: {fileID: 198810709796914224, guid: c3ef8cb5c23f37b439f55fc218032488,
         type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199967262512027732, guid: c3ef8cb5c23f37b439f55fc218032488,
+        type: 3}
+      propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

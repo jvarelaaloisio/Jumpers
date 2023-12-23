@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Characters
 {
@@ -9,9 +10,12 @@ namespace Characters
 		[SerializeField] private float jumpDuration;
 		[SerializeField] private float timeBetweenJumps;
 		[SerializeField] private int lifePoints;
+		[SerializeField] private int startingLifePoints;
+
 		public float MoveDistance => moveDistance;
 		public float JumpDuration => jumpDuration;
 		public float TimeBetweenJumps => timeBetweenJumps;
 		public int LifePoints => lifePoints;
+		public int StartingLifePoints => startingLifePoints;
 	}
 }

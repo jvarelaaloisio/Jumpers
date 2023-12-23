@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Debugging;
 using UnityEngine;
 
@@ -25,10 +26,13 @@ namespace Characters.Movements
 			_transformIndex = new Dictionary<Transform, int>();
 		}
 
-		public override Vector3 GetNextPosition(Transform transform, Vector3[] possibleDestinations)
+		public override Task<Vector3> GetNextPositionAsync(Pawn pawn)
 		{
-			if (!_transformIndex.ContainsKey(transform))
-				_transformIndex.Add(transform, 0);
+			var transform = pawn.GetTransform;
+			Vector3[] possibleDestinations = pawn.GetAvailablePillars(transform.position)
+			                                     .Select(p => p.position)
+			                                     .ToArray();
+			_transformIndex.TryAdd(transform, 0);
 			var destinationDirection = new (Vector3, Direction)[possibleDestinations.Length];
 			var myPosition = transform.position;
 			for (var i = 0; i < possibleDestinations.Length; i++)
@@ -63,11 +67,11 @@ namespace Characters.Movements
 				if (destinationDirection.All(tuple => tuple.Item2 != waypoints[lastIndex]))
 					continue;
 				Printer.Log(LogLevel.Info, $"{name} => {transform.name}: next dir: {waypoints[lastIndex]}");
-				return destinationDirection.First(tuple => tuple.Item2 == waypoints[lastIndex]).Item1;
+				return Task.FromResult(destinationDirection.First(tuple => tuple.Item2 == waypoints[lastIndex]).Item1);
 			}
 
 			Printer.Log(LogLevel.Warning, $"{name} => {transform.name}: no dir satisfies the waypoints");
-			return transform.position;
+			return Task.FromResult(transform.position);
 		}
 	}
 }

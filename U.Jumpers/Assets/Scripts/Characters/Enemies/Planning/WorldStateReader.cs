@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using AI.GOAP;
 using UnityEngine;
 
 namespace Characters.Enemies.Planning
@@ -8,8 +9,8 @@ namespace Characters.Enemies.Planning
         /// <summary>
         /// Assigns the values correspondent to this world reader 
         /// </summary>
-        /// <param name="worldState"></param>
+        /// <param name="state"></param>
         /// <param name="pawn"></param>
-        public abstract void PopulateState(ref Dictionary<string, object> worldState, Pawn pawn);
+        public abstract void PopulateState(GoapState state, Pawn pawn);
     }
 }

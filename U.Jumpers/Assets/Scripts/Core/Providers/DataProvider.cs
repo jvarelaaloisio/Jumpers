@@ -7,5 +7,7 @@ namespace Core.Providers
         public abstract T Value { get; set; }
         
         public static implicit operator T(DataProvider<T> provider) => provider.Value;
+
+        public virtual string GetLogData() => Value.ToString();
     }
 }

@@ -19,8 +19,8 @@ namespace Characters.Players
 		protected override void Awake()
 		{
 			base.Awake();
-			Pawn.OnFinishedMoving += ActivateMovementInput;
-			moveToPillar.Subscribe(Pawn.MoveCharacter);
+			pawn.OnFinishedMoving += ActivateMovementInput;
+			moveToPillar.Subscribe(pawn.MoveCharacter);
 			activatePlayerMovement.SubscribeSafely(ActivateMovementInput);
 			useAbility.Subscribe(UseAbility);
 		}
@@ -33,14 +33,14 @@ namespace Characters.Players
 
 		private void UseAbility(AbilitySo ability)
 		{
-			if (!ability.CanBeUsed(Pawn))
+			if (!ability.CanBeUsed(pawn))
 				return;
-			ability.Use(Pawn);
+			ability.Use(pawn);
 		}
 
 		private void ActivateMovementInput()
 		{
-			Transform[] pillars = Pawn.GetAvailablePillars();
+			Transform[] pillars = pawn.GetAvailablePillars(transform.position);
 			onCanMove?.Invoke(pillars);
 		}
 
@@ -48,7 +48,7 @@ namespace Characters.Players
 		{
 			base.OnDeath();
 			transform.position = _lastCheckPoint;
-			Pawn.Damageable.TakeDamage(-model.LifePoints);
+			pawn.Damageable.TakeDamage(-model.LifePoints);
 		}
 
 		public void SetCheckPoint(Transform checkPoint)
@@ -60,7 +60,7 @@ namespace Characters.Players
 
 		private void OnDestroy()
 		{
-			moveToPillar.Unsubscribe(Pawn.MoveCharacter);
+			moveToPillar.Unsubscribe(pawn.MoveCharacter);
 			activatePlayerMovement.UnSubscribe(ActivateMovementInput);
 			useAbility.Unsubscribe(UseAbility);
 		}

@@ -2,12 +2,14 @@
 using Core.States;
 using UnityEngine;
 
-namespace AI.GOAP
+namespace AI.GOAP.States
 {
     [Serializable]
     public class TypedState<T> : State
     {
         [SerializeField]
-        public new T value;
+        public T typedValue;
+
+        public override object GetValue() => typedValue;
     }
 }

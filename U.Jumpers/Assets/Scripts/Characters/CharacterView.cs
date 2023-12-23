@@ -58,27 +58,25 @@ namespace Characters
 		[Tooltip("Can Be Null")]
 		private FuncStringChannel generalInfoChannel;
 
-		public Pawn Pawn { get; set; }
+		public Pawn pawn { get; set; }
 		public PawnModel Model => model;
 
 		protected virtual void Awake()
 		{
-			Pawn = new Pawn(Model, transform,
-												() => transform.position, rotationDuration,
-												gameObject.scene.buildIndex);
-			Pawn.OnCharacterMoves += MoveCharacter;
-			Pawn.OnFinishedMoving += onMoveFinished.Invoke;
-			Pawn.Damageable.OnDeath += OnDeath;
+			pawn = new Pawn(Model,
+			                transform,
+			                () => transform.position, rotationDuration,
+			                gameObject.scene.buildIndex,
+			                this);
+			pawn.OnCharacterMoves += MoveCharacter;
+			pawn.OnFinishedMoving += onMoveFinished.Invoke;
+			pawn.Damageable.OnDeath += OnDeath;
 		}
 
 		protected virtual void Start()
 		{
-			Printer.Log(
-						LogLevel.Log,
-						$"{name} created with <color=green>{Pawn.Damageable.LifePoints}</color> LP");
-			generalInfoChannel.RaiseEventSafely(
-												() =>
-													$"{name} <color=green>{Pawn.Damageable.LifePoints}</color> LP");
+			Printer.Log(LogLevel.Log, $"{name} created with <color=green>{pawn.Damageable.LifePoints}</color> LP");
+			generalInfoChannel.RaiseEventSafely(() => $"{name} <color=green>{pawn.Damageable.LifePoints}</color> LP");
 		}
 
 		private void OnEnable()
@@ -106,7 +104,7 @@ namespace Characters
 
 		public void TakeDamage(int damage)
 		{
-			Damageable damageable = Pawn.Damageable;
+			Damageable damageable = pawn.Damageable;
 			damageable.TakeDamage(damage);
 			onTakeDamage.Invoke(damage);
 			onLifeChanged.Invoke(onLifeChangedIsLerp
@@ -114,7 +112,7 @@ namespace Characters
 									: damageable.LifePoints);
 			onAudio.Invoke(onDamageClip, audioSettings, transform.position);
 			Printer.Log(
-						$"{name} took <color=red>{damage}</color> damage and now has <color=green>{Pawn.Damageable.LifePoints}/{Pawn.Damageable.MaxLifePoints}</color>");
+						$"{name} took <color=red>{damage}</color> damage and now has <color=green>{pawn.Damageable.LifePoints}/{pawn.Damageable.MaxLifePoints}</color>");
 		}
 	}
 }

@@ -11,6 +11,7 @@ namespace Core.Helpers
         [SerializeField] private bool periodIsFrame;
 
         [Tooltip("Period (s). Ignored if " + nameof(periodIsFrame) + " is true")]
+        [Min(float.Epsilon)]
         [SerializeField] private float period = 1;
         
         public IEnumerator Wait()
