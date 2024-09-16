@@ -486,7 +486,7 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: -17}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 1, y: 1}
 --- !u!222 &181774811257255279
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -567,7 +567,7 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1129541667691528414}
   m_HandleRect: {fileID: 1659366166916179460}
-  m_Direction: 3
+  m_Direction: 2
   m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
@@ -1075,7 +1075,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 5571787804031220939}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999894
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1229,9 +1229,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forcedPivot: {x: 0, y: 0}
-  _axis: 0
   horizontalFit: 2
   verticalFit: 1
+  enableGizmos: 1
 --- !u!114 &4816850679632644277
 MonoBehaviour:
   m_ObjectHideFlags: 0
