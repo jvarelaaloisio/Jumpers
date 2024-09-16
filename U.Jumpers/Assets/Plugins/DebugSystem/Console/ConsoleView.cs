@@ -17,7 +17,7 @@ namespace Plugins.DebugSystem.Console
 			submit?.onClick.AddListener(HandleSubmitClick);
 			inputField?.onSubmit.AddListener(SubmitInput);
 			if (consoleWrapper)
-				consoleWrapper.onFeedback += WriteFeedback;
+				consoleWrapper.onFeedback += WriteToOutput;
 		}
 		
 		private void OnDisable()
@@ -25,7 +25,7 @@ namespace Plugins.DebugSystem.Console
 			submit?.onClick.RemoveListener(HandleSubmitClick);
 			inputField?.onSubmit.RemoveListener(SubmitInput);
 			if (consoleWrapper)
-				consoleWrapper.onFeedback -= WriteFeedback;
+				consoleWrapper.onFeedback -= WriteToOutput;
 		}
 
 		private void HandleSubmitClick() => SubmitInput(inputField.text);
@@ -43,7 +43,7 @@ namespace Plugins.DebugSystem.Console
 			inputField?.SetTextWithoutNotify(string.Empty);
 		}
 
-		public void WriteFeedback(string newFeedBack)
+		public void WriteToOutput(string newFeedBack)
 		{
 			if (!consoleBody)
 			{
