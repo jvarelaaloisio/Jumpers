@@ -7,8 +7,8 @@ using UnityEngine;
 
 namespace Plugins.DebugSystem.Console
 {
-	[CreateAssetMenu(menuName = "Debug Console/Debug Console Controller", fileName = "DebugConsoleController", order = 1000)]
-	public class ConsoleControllerSO : ScriptableObject
+	[CreateAssetMenu(menuName = "Debug Console/Debug Console", fileName = "DebugConsole", order = 1000)]
+	public class ConsoleWrapper : ScriptableObject
 	{
 		[SerializeField] protected List<CommandSO> commands;
 		[SerializeField] protected char[] separators;

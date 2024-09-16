@@ -1,15 +1,15 @@
 ﻿using System;
 using DS.DataRetriever;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Plugins.DebugSystem.GeneralInformation
 {
 	public class GeneralInformationView : MonoBehaviour
 	{
 		[SerializeField] private float frequency;
+		[SerializeField] private TextMeshProUGUI generalInformationBody;
 		private float _actualTime;
-		[SerializeField] private Text generalInformationText;
 		private IDataRetriever<string> _dataRetriever;
 		public bool IsUpdatingInfo { get; private set; }
 
@@ -52,7 +52,7 @@ namespace Plugins.DebugSystem.GeneralInformation
 			if (!dataWasRetrievedCorrectly)
 				information = string.Empty;
 
-			generalInformationText.text = information;
+			generalInformationBody?.SetText(information);
 		}
 	}
 }

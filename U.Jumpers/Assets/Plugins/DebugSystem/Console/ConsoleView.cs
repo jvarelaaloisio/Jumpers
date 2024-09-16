@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using DS.DebugConsole;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,46 +7,58 @@ namespace Plugins.DebugSystem.Console
 	public class ConsoleView : MonoBehaviour
 	{
 		private const int CHARACTER_LIMIT = 13000;
-		[SerializeField] private Text consoleBody;
-		[SerializeField] private InputField inputField;
-		[SerializeField] private ConsoleControllerSO consoleController;
-		private IDebugConsole<string> debugConsole;
-		private List<ICommand<string>> commands;
+		[SerializeField] private TextMeshProUGUI consoleBody;
+		[SerializeField] private TMP_InputField inputField;
+		[SerializeField] private Button submit;
+		[SerializeField] private ConsoleWrapper consoleWrapper;
 
-		public void SubmitInput(string input)
+		private void OnEnable()
 		{
-			if (!Input.GetButtonDown("Submit"))
-				return;
-			ReadInput(input);
+			submit?.onClick.AddListener(HandleSubmitClick);
+			inputField?.onSubmit.AddListener(SubmitInput);
+			if (consoleWrapper)
+				consoleWrapper.onFeedback += WriteFeedback;
+		}
+		
+		private void OnDisable()
+		{
+			submit?.onClick.RemoveListener(HandleSubmitClick);
+			inputField?.onSubmit.RemoveListener(SubmitInput);
+			if (consoleWrapper)
+				consoleWrapper.onFeedback -= WriteFeedback;
 		}
 
-		public void SubmitInput(Text text)
-		{
-			ReadInput(text.text);
-		}
+		private void HandleSubmitClick() => SubmitInput(inputField.text);
 
-		private void ReadInput(string input)
+		private void SubmitInput(string input)
 		{
 			if (input == string.Empty)
 				return;
-			_ = consoleController.TryUseInput(input);
-			inputField.text = string.Empty;
-		}
-
-		private void Start()
-		{
-			consoleController.onFeedback += WriteFeedback;
+			if (consoleWrapper == null)
+			{
+				Debug.LogError($"{name}: {nameof(consoleWrapper)} is null!");
+				return;
+			}
+			_ = consoleWrapper.TryUseInput(input);
+			inputField?.SetTextWithoutNotify(string.Empty);
 		}
 
 		public void WriteFeedback(string newFeedBack)
 		{
+			if (!consoleBody)
+			{
+				Debug.LogError($"{name}: {nameof(consoleBody)} is null!");
+				return;
+			}
 			consoleBody.text += "\n" + newFeedBack;
-			if (consoleBody.text.Length >= CHARACTER_LIMIT)
+			var watchdog = 10;
+			var bodyText = consoleBody.text;
+			while (watchdog-- > 0 && bodyText.Length >= CHARACTER_LIMIT)
 			{ 
-				var newBody = consoleBody.text.Substring(consoleBody.text.IndexOf('\n') + 1);
+				var newBody = bodyText[(bodyText.IndexOf('\n') + 1)..];
 				consoleBody.text = newBody;
 			}
-			inputField.ActivateInputField();
+			inputField?.ActivateInputField();
 		}
 	}
 }
