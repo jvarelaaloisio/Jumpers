@@ -8,8 +8,8 @@ namespace Plugins.DebugSystem.Console.Utils
     [RequireComponent(typeof(TextMeshProUGUI))]
     public class TMP_FitFontSizeToScreen : MonoBehaviour
     {
-        [SerializeField] private float minSize;
-        [SerializeField] private float maxSize;
+        [SerializeField] private float minSize = 14;
+        [SerializeField] private float maxSize = 36;
         [SerializeField] private float fontToScreenWidthRatio = 53;
         private TMP_Text _tmpText;
 

@@ -1,9 +1,11 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Plugins.DebugSystem.Console.Utils
 {
+    [Obsolete]
     [RequireComponent(typeof(TextMeshProUGUI))]
     [RequireComponent(typeof(RectTransform))]
     [ExecuteAlways]
@@ -59,9 +61,9 @@ namespace Plugins.DebugSystem.Console.Utils
                 float width = 0;
                 float height = 0;
 
-                for (int i = 0; i < textMeshPro.textInfo.lineCount; i++)
+                for (var i = 0; i < textMeshPro.textInfo.lineCount; i++)
                 {
-                    TMP_LineInfo lineInfo = textMeshPro.textInfo.lineInfo[i];
+                    var lineInfo = textMeshPro.textInfo.lineInfo[i];
                     width = Mathf.Max(width, lineInfo.maxAdvance);
                     height += lineInfo.lineHeight;
                 }

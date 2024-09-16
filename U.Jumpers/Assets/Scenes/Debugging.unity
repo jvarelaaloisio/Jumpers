@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generalInfoChannel: {fileID: 11400000, guid: a0aabcb17202a5541b61f0ef124e78db, type: 2}
-  generalInformationView: {fileID: 750241794}
+  runtimeDataView: {fileID: 750241794}
 --- !u!1001 &750241793
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -177,6 +177,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1659366166916179460, guid: d78fb7f1d90abda498a0b4bd726def66,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659366166916179460, guid: d78fb7f1d90abda498a0b4bd726def66,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571787804031220939, guid: d78fb7f1d90abda498a0b4bd726def66,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571787804031220939, guid: d78fb7f1d90abda498a0b4bd726def66,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5734353456141030808, guid: d78fb7f1d90abda498a0b4bd726def66,
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag

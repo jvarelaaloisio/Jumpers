@@ -24,7 +24,6 @@ namespace Plugins.DebugSystem.Console.Utils
         private Vector2 _defaultSizeDeltaWithForcedPivot;
 
         [SerializeField] private Vector2 forcedPivot = Vector2.zero;
-        [SerializeField] private SnapAxis _axis;
         [Tooltip(PreferredSizeTooltip)]
         [SerializeField] private ContentSizeFitter.FitMode horizontalFit;
         [Tooltip(PreferredSizeTooltip)]
@@ -66,8 +65,8 @@ namespace Plugins.DebugSystem.Console.Utils
             _rectTransform.pivot = forcedPivot;
             _defaultSizeDeltaWithForcedPivot = _rectTransform.sizeDelta;
             
-            _tmpText.ForceMeshUpdate();
             _tmpText.OnPreRenderText += HandlePreRenderText;
+            _tmpText.ForceMeshUpdate();
 
         }
 
@@ -115,8 +114,11 @@ namespace Plugins.DebugSystem.Console.Utils
             }
         }
 
+        [SerializeField] private bool enableGizmos = true;
         private void OnDrawGizmos()
         {
+            if (!enableGizmos)
+                return;
             if (!_rectTransform)
                 return;
             var points = new Vector3[4];

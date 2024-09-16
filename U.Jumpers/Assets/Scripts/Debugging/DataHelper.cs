@@ -7,10 +7,15 @@ namespace Debugging
 	public class DataHelper : MonoBehaviour
 	{
 		[SerializeField] private FuncStringChannel generalInfoChannel;
-		[SerializeField] private GeneralInformationView generalInformationView;
+		[SerializeField] private RuntimeDataView runtimeDataView;
 		private void Awake()
 		{
-			generalInfoChannel.Subscribe(generalInformationView.AddInformation);
+			if (runtimeDataView == null)
+			{
+				Debug.LogError($"{name}: {nameof(runtimeDataView)} is null!");
+				return;
+			}
+			generalInfoChannel?.Subscribe(runtimeDataView.AddRetriever);
 		}
 	}
 }
