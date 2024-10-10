@@ -30,15 +30,19 @@ namespace Audio
 		
 		public class Factory : UnityFactory<AudioPlayer>
 		{
+			private readonly Action<AudioPlayer> _handleAudioFinished;
+
 			public Factory(
-				string namePrefix,
-				Transform parent = null)
+				string namePrefix, Transform parent = null)
 				: base(namePrefix,
 						" Player ",
 						parent)
-			{ }
+			{
+				//TODO: receive parameter Action<AudioPlayer> handleAudioFinished
+				_handleAudioFinished = Dispose;
+			}
 
-			protected override AudioPlayer InstantiateObject()
+			protected override AudioPlayer Create()
 			{
 				int id = GetNextID();
 				Printer.Log(LogLevel.Log, "instantiated id: " + id);
@@ -49,7 +53,7 @@ namespace Audio
 				source.playOnAwake = false;
 				var player = newGO.AddComponent<AudioPlayer>();
 				player.Source = source;
-				player.OnAudioFinished = Dispose;
+				player.OnAudioFinished = _handleAudioFinished;
 				return player;
 			}
 

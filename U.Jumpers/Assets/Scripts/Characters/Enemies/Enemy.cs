@@ -134,7 +134,7 @@ namespace Characters.Enemies
 				_prefab = prefab ? prefab : new GameObject();
 			}
 
-			protected override Enemy InstantiateObject()
+			protected override Enemy Create()
 			{
 				int id = GetNextID();
 				Printer.Log(LogLevel.Log, "instantiated id: " + id);

@@ -1,4 +1,5 @@
 ﻿using Audio.Events;
+using Core.Factory;
 using Debugging;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,8 +23,8 @@ namespace Audio
 
 		[SerializeField] private AudioChannelSo playSfx;
 
-		private AudioPlayer.Factory _musicPlayerFactory;
-		private AudioPlayer.Factory _sfxPlayerFactory;
+		private UnityFactory<AudioPlayer> _musicPlayerFactory;
+		private UnityFactory<AudioPlayer> _sfxPlayerFactory;
 
 		private void Awake()
 		{
@@ -43,7 +44,8 @@ namespace Audio
 		private static void PlayAudio(AudioClip clip,
 			AudioSettingsSO settings,
 			Vector3 position,
-			AudioPlayer.Factory audioPlayerFactory,
+			//TODO: Replace with Pool
+			UnityFactory<AudioPlayer> audioPlayerFactory,
 			string logPrefix)
 		{
 			if (!clip)

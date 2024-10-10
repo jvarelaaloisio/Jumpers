@@ -20,7 +20,7 @@ namespace Audio
 					parent)
 		{ }
 
-		protected override AudioPlayer InstantiateObject()
+		protected override AudioPlayer Create()
 		{
 			int id = GetNextID();
 			Printer.Log(LogLevel.Log, "instantiated id: " + id);
