@@ -10,18 +10,18 @@ namespace Plugins.DebugSystem.GeneralInformation
 		[SerializeField] private float frequency;
 		[SerializeField] private TextMeshProUGUI runtimePanel;
 		private float _actualTime;
-		private IDataRetriever<string> _dataRetriever;
+		private IRetriever<string> _dataRetriever;
 		public bool IsRetrieving { get; private set; }
 
 		private void Start()
 		{
-			_dataRetriever = new TextDataRetriever(str => str + "\n");
+			_dataRetriever = new StringRetriever(str => str + "\n");
 			StartRetrieving();
 		}
 
 		private void Update()
 		{
-			if (!IsRetrieving || _dataRetriever.OnRetrieveData is null)
+			if (!IsRetrieving || _dataRetriever.FetchSources is null)
 				return;
 			_actualTime += Time.deltaTime;
 			if (!(_actualTime >= 1 / frequency))
@@ -32,7 +32,7 @@ namespace Plugins.DebugSystem.GeneralInformation
 
 		private void UpdateText()
 		{
-			bool dataWasRetrievedCorrectly = _dataRetriever.TryRetrieveData(out var information);
+			bool dataWasRetrievedCorrectly = _dataRetriever.TryFetch(out var information);
 			if (!dataWasRetrievedCorrectly)
 				information = string.Empty;
 
@@ -40,11 +40,11 @@ namespace Plugins.DebugSystem.GeneralInformation
 		}
 
 		public void AddRetriever(Func<string> getInformation)
-			=> _dataRetriever.AddDataSource(getInformation);
+			=> _dataRetriever.AddSource(getInformation);
 
 		public void RemoveRetriever(Func<string> getInformation)
 		{
-			_dataRetriever.RemoveDataSource(getInformation);
+			_dataRetriever.RemoveSource(getInformation);
 			UpdateText();
 		}
 

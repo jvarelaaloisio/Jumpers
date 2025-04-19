@@ -1,6 +1,9 @@
 {
     "name": "VarelaAloisio.DebugSystem.Console.Commands",
-    "references": [],
+    "rootNamespace": "",
+    "references": [
+        "GUID:602b71e690fd6714b9af390774e6b075"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

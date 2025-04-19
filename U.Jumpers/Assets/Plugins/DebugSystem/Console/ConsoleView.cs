@@ -17,7 +17,7 @@ namespace Plugins.DebugSystem.Console
 			submit?.onClick.AddListener(HandleSubmitClick);
 			inputField?.onSubmit.AddListener(SubmitInput);
 			if (consoleWrapper)
-				consoleWrapper.onFeedback += WriteToOutput;
+				consoleWrapper.log += WriteToOutput;
 		}
 		
 		private void OnDisable()
@@ -25,7 +25,7 @@ namespace Plugins.DebugSystem.Console
 			submit?.onClick.RemoveListener(HandleSubmitClick);
 			inputField?.onSubmit.RemoveListener(SubmitInput);
 			if (consoleWrapper)
-				consoleWrapper.onFeedback -= WriteToOutput;
+				consoleWrapper.log -= WriteToOutput;
 		}
 
 		private void HandleSubmitClick() => SubmitInput(inputField.text);

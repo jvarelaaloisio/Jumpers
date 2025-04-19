@@ -568,8 +568,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1129541667691528414}
   m_HandleRect: {fileID: 1659366166916179460}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -641,7 +641,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '"help" or "/ h" for help'
+  m_text: '"help" or "?" for help'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1074,7 +1074,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3274523243894117579}
   m_HandleRect: {fileID: 5571787804031220939}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

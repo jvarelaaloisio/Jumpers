@@ -6,9 +6,9 @@ using UnityEngine;
 namespace Characters.Enemies
 {
     [CreateAssetMenu(menuName = "Debug/Commands/Kill All Enemies", fileName = "KillAllCommand", order = 0)]
-    public class KillAllCommand : CommandSO
+    public class KillAllCommand : CommandSo
     {
-        public override void Execute(string[] args, Action<string> writeToConsole)
+        public override void Execute(Action<string> writeToConsole, params string[] args)
         {
             var enemies = FindObjectsOfType<Enemy>();
             foreach (var enemy in enemies)
@@ -22,7 +22,7 @@ namespace Characters.Enemies
         public override string Name => name;
         [SerializeField] private List<string> aliases;
         public override IEnumerable<string> Aliases => aliases;
-        [SerializeField] private string _description = "Kills all enemies found";
-        public override string Description => _description;
+        [SerializeField] private string description = "Kills all enemies found";
+        public override string Description => description;
     }
 }
